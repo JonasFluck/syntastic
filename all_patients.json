@@ -1,0 +1,3588 @@
+[
+    {
+    "patient_id": "syn1_syn1",
+    "snps": [
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn2_syn2",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn3_syn3",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn4_syn4",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn5_syn5",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn6_syn6",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn7_syn7",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn8_syn8",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn9_syn9",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn10_syn10",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn11_syn11",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn12_syn12",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn13_syn13",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn14_syn14",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn15_syn15",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn16_syn16",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn17_syn17",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn18_syn18",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn19_syn19",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    },
+    {
+        "patient_id": "syn20_syn20",
+        "snps": [
+            {
+                "chromosome": "1",
+                "position": "631495",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "656695",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "793571",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "817341",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818802",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "818954",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "825532",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "833068",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "841166",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "843942",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "857100",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "864083",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "903175",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "911428",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "917392",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "918574",
+                "reference": "C",
+                "alternative": "A",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "918870",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "922448",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "926428",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "927744",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "929558",
+                "reference": "A",
+                "alternative": "G",
+                "expression": "0/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "935265",
+                "reference": "T",
+                "alternative": "C",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "938178",
+                "reference": "T",
+                "alternative": "G",
+                "expression": "1/1"
+            },
+            {
+                "chromosome": "1",
+                "position": "943937",
+                "reference": "C",
+                "alternative": "T",
+                "expression": "0/0"
+            },
+            {
+                "chromosome": "1",
+                "position": "944858",
+                "reference": "G",
+                "alternative": "A",
+                "expression": "0/0"
+            }
+        ]
+    }
+]
