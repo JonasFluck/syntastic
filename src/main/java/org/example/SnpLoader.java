@@ -1,10 +1,7 @@
 package org.example;
 
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,18 +10,18 @@ import com.google.gson.JsonObject;
 import org.example.concepts.Snp;
 
 public class SnpLoader {
-    public Map<String, List<Snp>> loadSnps(String filePath) {
+    public Map<String, Map<String,Snp>> loadSnps(String filePath) {
         try {
             Gson gson = new Gson();
             JsonArray jsonArray = gson.fromJson(new FileReader(filePath), JsonArray.class);
-            Map<String, List<Snp>> patientSnps = new HashMap<>();
+            Map<String, Map<String,Snp>> patientSnps = new HashMap<>();
 
             for (JsonElement patientElement : jsonArray) {
                 JsonObject patientObject = patientElement.getAsJsonObject();
                 String patientId = patientObject.get("patient_id").getAsString();
                 JsonArray snpsArray = patientObject.getAsJsonArray("snps");
 
-                List<Snp> snpsList = new ArrayList<>();
+                Map<String,Snp> snpsList = new HashMap<>();
                 for (JsonElement snpElement : snpsArray) {
                     JsonObject snpObject = snpElement.getAsJsonObject();
 
@@ -35,8 +32,9 @@ public class SnpLoader {
                     snp.setRef(snpObject.get("reference").getAsString().charAt(0));
                     snp.setAlt(snpObject.get("alternative").getAsString().charAt(0));
                     snp.setExpression(snpObject.get("expression").getAsString());
+                    snp.setRsId(snpObject.get("id").getAsString());
 
-                    snpsList.add(snp);
+                    snpsList.put(snp.getRsId(),snp);
                 }
 
                 // Map patient ID to the list of SNPs

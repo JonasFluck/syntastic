@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.example.concepts.Module;
 import org.example.concepts.Patient;
+import org.example.concepts.Gender;
+import org.example.modules.baseModules.ModuleBaseAttributes;
 import org.example.modules.config.ModuleLoader;
 
 import java.io.FileWriter;
@@ -16,6 +18,12 @@ public class Main {
         SnpLoader loader = new SnpLoader();
         ModuleLoader moduleLoader = new ModuleLoader();
         List<Module> activeModules = moduleLoader.loadModules("config.json");
+        activeModules.add(new ModuleBaseAttributes.Builder()
+                .setMinAge(18)
+                .setMaxAge(65)
+                .setCountries(List.of("USA", "Canada", "Mexico"))
+                .setGender(Gender.Male)
+                .build());
         Generator generator = new Generator(activeModules);
         List<Patient> patients= generator.generatePatients(loader.loadSnps("all_patients.json"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

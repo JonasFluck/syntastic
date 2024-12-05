@@ -25,7 +25,7 @@ public class ModuleLoader {
 
     private Set<Class<? extends Module>> getModuleClasses() {
         // Using Reflections to find all subclasses of Module
-        Reflections reflections = new Reflections("org.example.modules"); // base package
+        Reflections reflections = new Reflections("org.example.modules.extensionModules"); // base package
         return reflections.getSubTypesOf(Module.class);
     }
 

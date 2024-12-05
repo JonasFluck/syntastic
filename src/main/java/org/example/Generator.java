@@ -4,9 +4,7 @@ import org.example.concepts.Module;
 import org.example.concepts.Patient;
 import org.example.concepts.Snp;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
@@ -18,19 +16,18 @@ public class Generator {
 
     public Generator(){}
 
-    public List<Patient> generatePatients(Map<String, List<Snp>> snpData){
+    public List<Patient> generatePatients(Map<String, Map<String,Snp>> snpData){
         List<CompletableFuture<Patient>> futureTasks = new ArrayList<>();
-        for (Map.Entry<String, List<Snp>> entry : snpData.entrySet()) {
+        for (Map.Entry<String, Map<String,Snp>> entry : snpData.entrySet()) {
             CompletableFuture<Patient> futureTask = CompletableFuture.supplyAsync(() -> {
                 // Perform the task asynchronously for each entry
                 String patientId = entry.getKey();
-                List<Snp> snps = entry.getValue();
-                Patient patient = new Patient();
-                patient.setId(patientId);
-                patient.setSnps(snps);
+                Map<String,Snp> snps = entry.getValue();
+                Patient patient = new Patient(patientId, snps);
                 for(Module module : modules){
                     patient = module.processData(patient);
                 }
+                System.out.println("Patient " + patientId + " processing is done.");
                 return patient;
             });
 
