@@ -1,11 +1,17 @@
 package org.example.concepts;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Patient {
+
+    public Patient(String id, Map<String, Snp> snps) {
+        this.id = id;
+        this.snps = snps;
+    }
+
     private String id;
+    private Map<String, Snp> snps;
+    private Map<String, Object> attributes = new HashMap<>();
 
     public String getId() {
         return id;
@@ -15,14 +21,13 @@ public class Patient {
         this.id = id;
     }
 
-    public List<Snp> getSnps() {
+    public Map<String, Snp> getSnps() {
         return snps;
     }
 
-    public void setSnps(List<Snp> snps) {
-        this.snps = snps;
+    public void addSnp(Snp snp) {
+        this.snps.put(snp.getRsId(), snp);
     }
-    private List<Snp> snps;
 
     public Map<String, Object> getAttributes() {
         return attributes;
@@ -31,6 +36,5 @@ public class Patient {
     public void setAttributes(Map<String, Object> attributes) {
         this.attributes = attributes;
     }
-
-    private Map<String, Object> attributes = new HashMap<>();
 }
+

@@ -1,10 +1,8 @@
-package org.example.modules;
+package org.example.modules.baseModules;
 
-import org.example.concepts.Attribute;
 import org.example.concepts.Module;
 import org.example.concepts.Patient;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 

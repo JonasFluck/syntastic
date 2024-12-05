@@ -1,5 +1,4 @@
 {
-  "activeModules": [
-    "org.example.modules.ModuleAge"
+  "activeModules": ["org.example.modules.extensionModules.ModuleEpilepsy"
   ]
 }

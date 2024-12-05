@@ -46,4 +46,14 @@ public class Snp {
     private char ref;
     private char alt;
     private String expression;
+
+    public String getRsId() {
+        return rsId;
+    }
+
+    public void setRsId(String rsId) {
+        this.rsId = rsId;
+    }
+
+    private String rsId;
 }
