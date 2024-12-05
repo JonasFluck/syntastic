@@ -7,16 +7,16 @@ import org.example.helper.CsvLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class ModuleBaseAttributes extends Module {
+
     private int minAge;
     private int maxAge;
-    private List<String> inputCountries;
-    private List<Country> countries;
     private Gender gender;
+    private List<Country> countries;
     private List<String[]> csvData;
     private int totalPopulation;
 
@@ -24,12 +24,14 @@ public class ModuleBaseAttributes extends Module {
     private ModuleBaseAttributes(Builder builder) {
         this.minAge = builder.minAge;
         this.maxAge = builder.maxAge;
-        this.inputCountries = builder.countries;
         this.gender = builder.gender;
+        List<String> inputCountries = builder.countries;
+        Gender gender = builder.gender;
         try{
             this.csvData = CsvLoader.readCSVFromResources("euro_pop.csv");
             csvData.remove(0); // Remove the header row
             countries = parseCsvData(csvData);
+            countries.removeIf(country -> !inputCountries.contains(country.getName()));
             totalPopulation = countries.stream().mapToInt(Country::getPopulation).sum();
         } catch (IOException | CsvValidationException e) {
             e.printStackTrace();
@@ -98,7 +100,7 @@ public class ModuleBaseAttributes extends Module {
     public static class Builder {
         private int minAge;
         private int maxAge;
-        private List<String> countries;
+        private List<String> countries = new ArrayList<>();
         private Gender gender;
 
         // Optional fields can have defaults
@@ -148,21 +150,44 @@ public class ModuleBaseAttributes extends Module {
         return null;
     }
 
-    private int getRandomCAge(Country country) {
+    private int getRandomAge(Country country, Optional<Integer> minAge, Optional<Integer> maxAge) {
         Random random = new Random();
-        int totalPopulation =  country.getAgeGroups().stream().mapToInt(AgeGroup::getTotalPopulation).sum();
+
+        // Filter age groups based on optional minAge and maxAge
+        List<AgeGroup> filteredAgeGroups = country.getAgeGroups().stream()
+                .filter(ageGroup ->
+                        (!minAge.isPresent() || ageGroup.getAge() >= minAge.get()) &&
+                                (!maxAge.isPresent() || ageGroup.getAge() <= maxAge.get()))
+                .toList();
+
+        // Calculate the total population for the filtered age groups
+        int totalPopulation = filteredAgeGroups.stream()
+                .mapToInt(AgeGroup::getTotalPopulation)
+                .sum();
+
+        // If no age groups match the criteria, return a default value (e.g., 0 or throw an exception)
+        if (totalPopulation == 0) {
+            throw new IllegalArgumentException("No age groups match the specified criteria.");
+        }
+
+        // Generate a random value and find the corresponding age group
         int randomValue = random.nextInt(totalPopulation);
         int currentSum = 0;
-        for(AgeGroup ageGroup : country.getAgeGroups()){
+
+        for (AgeGroup ageGroup : filteredAgeGroups) {
             currentSum += ageGroup.getTotalPopulation();
-            if(randomValue < currentSum){
+            if (randomValue < currentSum) {
                 return ageGroup.getAge();
             }
         }
-        return 0;
+
+        return 0; // This line is technically unreachable but included for completeness
     }
 
+
     private Gender getRandomGender(AgeGroup ageGroup){
+        if(gender != null)
+            return gender;
         Random random = new Random();
         int totalPopulation =  ageGroup.getTotalPopulation();
         int randomValue = random.nextInt(totalPopulation);
@@ -178,11 +203,10 @@ public class ModuleBaseAttributes extends Module {
     @Override
     public Patient processData(Patient patient) {
         Country country = getRandomCountry();
-        int age = getRandomCAge(country);
+        int age = getRandomAge(country, Optional.of(minAge), Optional.of(maxAge));
         patient.getAttributes().put("country", country.getName());
         patient.getAttributes().put("age",age);
         patient.getAttributes().put("gender", getRandomGender(country.getAgeGroups().stream().filter(group -> group.getAge() == age).findFirst().get()));
-        //patient = moduleGender.processData(patient);
         return patient;
     }
 }

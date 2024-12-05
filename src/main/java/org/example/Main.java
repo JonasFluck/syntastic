@@ -19,10 +19,10 @@ public class Main {
         ModuleLoader moduleLoader = new ModuleLoader();
         List<Module> activeModules = moduleLoader.loadModules("config.json");
         activeModules.add(new ModuleBaseAttributes.Builder()
-                .setMinAge(18)
-                .setMaxAge(65)
-                .setCountries(List.of("USA", "Canada", "Mexico"))
-                .setGender(Gender.Male)
+                        .setMinAge(25)
+                        .setMaxAge(75)
+                        .setGender(Gender.Male)
+                        .setCountries(List.of("Germany", "France", "Italy"))
                 .build());
         Generator generator = new Generator(activeModules);
         List<Patient> patients= generator.generatePatients(loader.loadSnps("all_patients.json"));
