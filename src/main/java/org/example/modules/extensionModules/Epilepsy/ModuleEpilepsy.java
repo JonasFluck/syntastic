@@ -59,6 +59,7 @@ public class ModuleEpilepsy extends Module{
             for(String family : drug.getFamily()){
                 List<Snp> snps = drugTypesWithSnp.get(family);
                 relevantSnps.addAll(drawPercentageOfSnps(snps, 80));
+                drugSnpMap.put(drug, relevantSnps);
             }
         }
         return drugSnpMap;
