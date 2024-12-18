@@ -27,7 +27,6 @@ public class Main {
         Generator generator = new Generator(activeModules);
         List<Patient> patients= generator.generatePatients(loader.loadSnps("all_patients.json"));
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
         try (FileWriter writer = new FileWriter("patients.json")) {
             // Serialize the list of patients to JSON and write to a file
             gson.toJson(patients, writer);

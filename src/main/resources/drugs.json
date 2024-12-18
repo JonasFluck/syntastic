@@ -1,0 +1,142 @@
+[
+    {
+      "name": "Valproate",
+      "family": ["Na-Channel Blocker", "T type Ca-channel blocker", "GABA", "GABA-A Receptor"],
+      "prescriptionFrequency": 6057
+    },
+    {
+      "name": "Carbamazepine",
+      "family": ["Na-Channel Blocker"],
+      "prescriptionFrequency": 5567
+    },
+    {
+      "name": "Lamotrigine",
+      "family": ["Na-Channel Blocker", "T type Ca-channel blocker"],
+      "prescriptionFrequency": 5154
+    },
+    {
+      "name": "Levetiracetam",
+      "family": ["Presynaptic proteins"],
+      "prescriptionFrequency": 4625
+    },
+    {
+      "name": "Topiramate",
+      "family": ["T type Ca-channel blocker", "Presynaptic proteins"],
+      "prescriptionFrequency": 2618
+    },
+    {
+      "name": "Phenytoin",
+      "family": ["Na-Channel Blocker"],
+      "prescriptionFrequency": 2342
+    },
+    {
+      "name": "Clobazam",
+      "family": ["GABA", "GABA-A Receptor"],
+      "prescriptionFrequency": 2051
+    },
+    {
+      "name": "Phenobarbital",
+      "family": ["GABA"],
+      "prescriptionFrequency": 1520
+    },
+    {
+      "name": "Oxcarbazepine",
+      "family": ["Na-Channel Blocker"],
+      "prescriptionFrequency": 1391
+    },
+    {
+      "name": "Gabapentin",
+      "family": ["T type Ca-channel blocker"],
+      "prescriptionFrequency": 1040
+    },
+    {
+      "name": "Vigabatrin",
+      "family": ["GABA"],
+      "prescriptionFrequency": 1002
+    },
+    {
+      "name": "Lacosamide",
+      "family": ["Na-Channel Blocker"],
+      "prescriptionFrequency": 858
+    },
+    {
+      "name": "Zonisamide",
+      "family": ["Na-Channel Blocker", "T type Ca-channel blocker"],
+      "prescriptionFrequency": 830
+    },
+    {
+      "name": "Pregabalin",
+      "family": ["T type Ca-channel blocker"],
+      "prescriptionFrequency": 684
+    },
+    {
+      "name": "Clonazepam",
+      "family": ["GABA", "GABA-A Receptor"],
+      "prescriptionFrequency": 612
+    },
+    {
+      "name": "Ethosuximide",
+      "family": ["T type Ca-channel blocker"],
+      "prescriptionFrequency": 548
+    },
+    {
+      "name": "Primidone",
+      "family": ["GABA"],
+      "prescriptionFrequency": 425
+    },
+    {
+      "name": "Tiagabine",
+      "family": ["GABA"],
+      "prescriptionFrequency": 264
+    },
+    {
+      "name": "Acetazolamide",
+      "family": [],
+      "prescriptionFrequency": 180
+    },
+    {
+      "name": "Diazepam",
+      "family": ["GABA", "GABA-A Receptor"],
+      "prescriptionFrequency": 170
+    },
+    {
+      "name": "Eslicarbazepine acetate",
+      "family": ["Na-Channel Blocker"],
+      "prescriptionFrequency": 128
+    },
+    {
+      "name": "Retigabine",
+      "family": [],
+      "prescriptionFrequency": 121
+    },
+    {
+      "name": "Perampanel",
+      "family": ["AMPA Receptor (Glutamate)", "Presynaptic proteins"],
+      "prescriptionFrequency": 105
+    },
+    {
+      "name": "Sulthiame",
+      "family": [],
+      "prescriptionFrequency": 76
+    },
+    {
+      "name": "Rufinamide",
+      "family": [],
+      "prescriptionFrequency": 75
+    },
+    {
+      "name": "Felbamate",
+      "family": [],
+      "prescriptionFrequency": 70
+    },
+    {
+      "name": "Lorazepam",
+      "family": [],
+      "prescriptionFrequency": 37
+    },
+    {
+      "name": "Nitrazepam",
+      "family": [],
+      "prescriptionFrequency": 12
+    }
+]

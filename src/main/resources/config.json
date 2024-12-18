@@ -1,4 +1,6 @@
 {
-  "activeModules": ["org.example.modules.extensionModules.ModuleEpilepsy"
+  "activeModules": [
+    "org.example.modules.extensionModules.ModuleEpilepsy",
+    "org.example.modules.extensionModules.ModuleDrugs"
   ]
 }
