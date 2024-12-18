@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 import org.example.concepts.Snp;
 
 public class SnpLoader {
-    public Map<String, Map<String,Snp>> loadSnps(String filePath) {
+    public static Map<String, Map<String,Snp>> loadSnps(String filePath) {
         try {
             Gson gson = new Gson();
             JsonArray jsonArray = gson.fromJson(new FileReader(filePath), JsonArray.class);
