@@ -45,7 +45,6 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
             drugEvent.setDrug(drug);
             drugEvent.setResponse(getResponse(drugEvent, patient, drugSnpMap));
         }
-        priorDrugEvents.add(drugEvent); // to ensure that the last prescribed drug cannot be prescribed again
         return drugEvent;
     }
 
@@ -74,21 +73,23 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
 
         // Ensure the adjusted mutation percentage is between 0 and 1
         adjustedMutationPercentage = Math.max(0, Math.min(1, adjustedMutationPercentage));
-
+        System.out.println(adjustedMutationPercentage);
+        drugEvent.setSnpDrugMutationRate(adjustedMutationPercentage);
         // Randomly determine the drug response based on the adjusted mutation percentage
         // Likelihood to be randomly greater than adjustedMutationPercentage is:
         // high for a small adjustedMutationPercentage -> drug works -> return true
         // low for a high adjustedMutationPercentage -> drug does not work -> return false
+
         if (adjustedMutationPercentage < random.nextDouble()) {
             drugResponse = true;
         }
-
         /*
-        // Other approach with a hard threshold of 0.5
-        if(adjustedMutationPercentage < 0.5){
+        // Other approach with a hard threshold of 0.25
+        if(adjustedMutationPercentage < 0.25){
             drugResponse = true;
         }
          */
+
         return drugResponse;
     }
 

@@ -19,20 +19,27 @@ public abstract class ModuleDrugs extends Module {
 
     private List<DrugEvent> getDrugEvents(Patient patient){
         List<DrugEvent> drugEvents= new ArrayList<>();
-        return assignDrug(patient, drugEvents);
+        return assignDrug(patient, drugEvents, 1);
     }
 
-    private List<DrugEvent> assignDrug(Patient patient, List<DrugEvent> drugEvents){
+    private List<DrugEvent> assignDrug(Patient patient, List<DrugEvent> drugEvents, int drugEventCount){
         if(drugEvents.isEmpty()){
-            drugEvents.add(createDrugEvent(drugEvents, patient, drugSnpMap));
-            return assignDrug(patient, drugEvents);
+            // create a new drug event
+            DrugEvent newDrugEvent = createDrugEvent(drugEvents, patient, drugSnpMap);
+            newDrugEvent.setDrugEventCount(drugEventCount);
+            drugEvents.add(newDrugEvent);
+            return assignDrug(patient, drugEvents, drugEventCount+1);
         }
         else {
             DrugEvent lastDrugEvent = drugEvents.getLast();
-            if(lastDrugEvent.isResponse() ? decideIfMoreDrugs(0.1) : decideIfMoreDrugs(0.8)){
-                if(drugEvents.size() < maxDrugs){
-                    drugEvents.add(createDrugEvent(drugEvents, patient, drugSnpMap));
-                    return assignDrug(patient, drugEvents);
+            double chance = lastDrugEvent.isResponse() ? 0.05 : 0.8;
+            if (decideIfMoreDrugs(chance)) {
+                if (drugEvents.size() < maxDrugs) {
+                    // create a new drug event
+                    DrugEvent newDrugEvent = createDrugEvent(drugEvents, patient, drugSnpMap);
+                    newDrugEvent.setDrugEventCount(drugEventCount);
+                    drugEvents.add(newDrugEvent);
+                    return assignDrug(patient, drugEvents, drugEventCount + 1);
                 }
             }
             return drugEvents;

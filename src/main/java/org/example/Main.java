@@ -7,7 +7,6 @@ import org.example.concepts.Patient;
 import org.example.concepts.Gender;
 import org.example.concepts.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
-import org.example.modules.config.ModuleLoader;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 
 import java.io.FileWriter;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
