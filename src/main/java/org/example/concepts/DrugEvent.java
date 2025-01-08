@@ -17,6 +17,26 @@ public class DrugEvent {
         this.response = response;
     }
 
+    public void setSnpDrugMutationRate(double snpDrugMutationRate) {
+        this.snpDrugMutationRate = snpDrugMutationRate;
+    }
+
+    public double getSnpDrugMutationRate(){
+        return snpDrugMutationRate;
+    }
+
+    public int getDrugEventCount() {
+        return drugEventCount;
+    }
+
+    public void setDrugEventCount(int drugEventCount) {
+        this.drugEventCount = drugEventCount;
+    }
+
     private Drug drug;
     private boolean response;
+    private double snpDrugMutationRate;
+    private int drugEventCount;
+
+
 }
