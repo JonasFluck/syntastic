@@ -110,7 +110,6 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
                 switch (expression) {
                     case "0/0": // No mutation
                         break;
-                    case "1/0":
                     case "0/1":
                     case "1/1": // Mutation present
                         mutatedCount++;
