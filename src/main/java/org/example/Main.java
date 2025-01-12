@@ -19,9 +19,6 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        //SnpLoader loader = new SnpLoader();
-        //ModuleLoader moduleLoader = new ModuleLoader();
-        //List<Module> activeModules = moduleLoader.loadModules("config.json");
         Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("all_patients.json");
         List<Module> activeModules = new ArrayList<>();
         activeModules.add(new ModuleBaseAttributes.Builder()
