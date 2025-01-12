@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Patient {
 
+    public Patient() {
+    }
     public Patient(String id, Map<String, Snp> snps) {
         this.id = id;
         this.snps = snps;

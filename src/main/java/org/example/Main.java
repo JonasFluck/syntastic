@@ -8,6 +8,7 @@ import org.example.concepts.Gender;
 import org.example.concepts.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
+import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,9 +19,6 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        //SnpLoader loader = new SnpLoader();
-        //ModuleLoader moduleLoader = new ModuleLoader();
-        //List<Module> activeModules = moduleLoader.loadModules("config.json");
         Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("all_patients.json");
         List<Module> activeModules = new ArrayList<>();
         activeModules.add(new ModuleBaseAttributes.Builder()
@@ -36,8 +34,15 @@ public class Main {
                 .toList();
         activeModules.add(new ModuleEpilepsy(relevantSnpEpilepsy));
 
+        // load the odds ratios in a map
+        Map<String, Map<String, Double>> oddsRatios = ModuleAttributes.loadAttributes("src/main/resources/epilepsy_odds_ratios.json");
+        //System.out.println(oddsRatios);
+        ModuleAttributes moduleAttributes = new ModuleAttributes(oddsRatios);
+        // add the new module of the attributes with the odds ratios
+        activeModules.add(moduleAttributes);
+
         Generator generator = new Generator(activeModules);
-        List<Patient> patients= generator.generatePatients(patientData);
+        List<Patient> patients = generator.generatePatients(patientData);
         exportResults(patients, "patients.json");
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
