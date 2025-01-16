@@ -1,14 +1,21 @@
+# -*- coding: utf-8 -*-
 import json
 import os
-from glob import glob  # For listing files with specific patterns
+from glob import glob
+from multiprocessing import Pool
 
 # Input and output paths
-input_folder = "modified_test_vcfs"  # Folder containing all the modified_test_chr-X.vcf files
-output_json = "all_patients.json"  # Large JSON file for all patients across all VCF files
+input_folder = "/beegfs/HPCscratch/braitinger/data/outputs/modified_vcfs"
+output_folder = "/beegfs/HPCscratch/braitinger/data/outputs/json_per_chromosome"
+final_output_json = "all_patients_combined.json"
 
-# Function to process a single VCF file into a JSON structure
+# Ensure output folder exists
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+# Function to process a single VCF file and save per chromosome JSON
 def process_vcf_to_json(input_vcf):
-    patient_data = {}
+    chromosome_data = {}
 
     with open(input_vcf, "r") as file:
         lines = file.readlines()
@@ -16,97 +23,106 @@ def process_vcf_to_json(input_vcf):
     # Extract header and data
     header_line = None
     for line in lines:
-        if line.startswith("#CHROM"):  # Find the header line
+        if line.startswith("#CHROM"):
             header_line = line.strip()
             break
 
     if not header_line:
-        raise ValueError(f"VCF header (#CHROM) not found in the file: {input_vcf}")
+        raise ValueError("VCF header (#CHROM) not found in the file: {}".format(input_vcf))
 
     # Parse header to extract patient IDs
     headers = header_line.split("\t")
-    patient_ids = headers[9:]  # Patient data starts at the 10th column
+    patient_ids = headers[9:]
 
-    print(f"Processing SNP data for {input_vcf}...")
+    print "Processing SNP data for {}...".format(input_vcf)
 
     # Process SNP data
     for line in lines:
         if line.startswith("#"):
-            continue  # Skip metadata lines
+            continue
         fields = line.strip().split("\t")
-        
-        chromosome = fields[0]  # Chromosome is in the first column
-        position = fields[1]    # Position is in the second column
-        id = fields[2]          # rsID is in the third column
-        reference = fields[3]   # Reference allele is in the fourth column
-        alternative = fields[4]  # Alternative allele is in the fifth column
-        genotype_data = fields[9:]  # Patient-specific genotype data starts at the 10th column
 
-        # Add genotype data to each patient
+        chromosome = fields[0]
+        position = fields[1]
+        snp_id = fields[2]
+        reference = fields[3]
+        alternative = fields[4]
+        genotype_data = fields[9:]
+
+        # Initialize chromosome data structure if not already created
+        if chromosome not in chromosome_data:
+            chromosome_data[chromosome] = {}
+
+        # Add genotype data to each patient for the chromosome
         for patient_idx, genotype in enumerate(genotype_data):
             patient_id = patient_ids[patient_idx]
 
             # Initialize patient data structure if not already created
-            if patient_id not in patient_data:
-                patient_data[patient_id] = []
+            if patient_id not in chromosome_data[chromosome]:
+                chromosome_data[chromosome][patient_id] = []
 
-            # Parse genotype expression
-            genotype_expression = genotype.split(":")[0]  # Extract the genotype (e.g., "0/1")
+            genotype_expression = genotype.split(":")[0]
 
             # Append SNP data for the patient
-            patient_data[patient_id].append({
-                "id": id,
-                "chromosome": chromosome,
+            chromosome_data[chromosome][patient_id].append({
+                "id": snp_id,
                 "position": position,
                 "reference": reference,
                 "alternative": alternative,
                 "expression": genotype_expression
             })
 
-    print(f"Finished processing {input_vcf}.")
-    return patient_data
+    # Save each chromosome's data to a separate JSON file
+    for chromosome, data in chromosome_data.items():
+        output_file = os.path.join(output_folder, "chromosome_{}.json".format(chromosome))
+        with open(output_file, "w") as chrom_file:
+            json.dump(data, chrom_file, indent=4)
+        print "Chromosome {} data written to {}".format(chromosome, output_file)
 
-# Function to write all patient data to one large JSON file
-def write_large_json(all_patient_data, output_large_json):
-    # Convert dictionary to a list of patient data
-    all_patients = [
-        {"patient_id": patient_id, "snps": snps}
-        for patient_id, snps in all_patient_data.items()
-    ]
+    print "Finished processing {}.".format(input_vcf)
 
-    # Write all patient data to one large JSON file
-    with open(output_large_json, "w") as large_file:
-        json.dump(all_patients, large_file, indent=4)
-    
-    print(f"All patient data successfully written to {output_large_json}")
+# Function to combine all JSON files into one
+def combine_all_json(output_folder, final_output_json):
+    combined_data = {}
+
+    # Load all JSON files in the output folder
+    json_files = glob(os.path.join(output_folder, "*.json"))
+    for json_file in json_files:
+        with open(json_file, "r") as file:
+            data = json.load(file)
+            for patient_id, snps in data.items():
+                if patient_id not in combined_data:
+                    combined_data[patient_id] = []
+                combined_data[patient_id].extend(snps)
+
+    # Write combined data to the final JSON file
+    with open(final_output_json, "w") as final_file:
+        json.dump(combined_data, final_file, indent=4)
+
+    print "All chromosome data combined and written to {}".format(final_output_json)
 
 # Main execution for multiple VCF files
 if __name__ == "__main__":
-    print("Starting VCF processing...")
-    
+    print "Starting VCF processing..."
+
     # Collect all VCF files in the input folder
     vcf_files = glob(os.path.join(input_folder, "*.vcf"))
     if not vcf_files:
-        print("No VCF files found in the input folder!")
+        print "No VCF files found in the input folder!"
         exit()
 
-    combined_patient_data = {}  # Dictionary to combine data across all VCF files
+    # Create a Pool of processes
+    pool = Pool()
 
-    # Process each VCF file
-    for vcf_file in vcf_files:
-        try:
-            patient_data = process_vcf_to_json(vcf_file)
-            
-            # Merge patient data from this file into the combined data
-            for patient_id, snps in patient_data.items():
-                if patient_id not in combined_patient_data:
-                    combined_patient_data[patient_id] = []
-                combined_patient_data[patient_id].extend(snps)
+    # Use multiprocessing Pool to process VCF files in parallel
+    pool.map(process_vcf_to_json, vcf_files)
 
-        except Exception as e:
-            print(f"Error processing file {vcf_file}: {e}")
-    
-    # Write the combined patient data to a single JSON file
-    write_large_json(combined_patient_data, output_json)
+    # Close the pool and wait for the processes to finish
+    pool.close()
+    pool.join()
 
-    print("All VCF files processed successfully.")
+    # Combine all chromosome JSON files into one
+    combine_all_json(output_folder, final_output_json)
+
+    print "All VCF files processed and combined successfully."
+
