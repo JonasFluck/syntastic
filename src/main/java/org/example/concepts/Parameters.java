@@ -3,10 +3,21 @@ import org.example.concepts.handlers.*;
 import java.util.*;
 
 public class Parameters {
+    //Base attributes
     public int minAge;
     public int maxAge;
     public Gender gender;
     public List<Country> countryList = new ArrayList<>();
+
+    //Epilepsy attributes
+    public int snpsPerDrugType;
+    public int percentageOfSnpsForDrugPerDrugType;
+    public double baseDrugEffectiveness;
+    public double negativePriorDrugEvent;
+    public double positivePriorDrugEvent;
+
+
+
 
     // Map to store argument handlers
     private final List<ArgumentHandler> argumentHandlers = new ArrayList<>();
@@ -46,6 +57,7 @@ public class Parameters {
 
     private void registerHandlers() {
         argumentHandlers.add(new BaseAttributeHandler());
+        argumentHandlers.add(new EpilepsyHandler());
         // Add more handlers as needed
     }
 }

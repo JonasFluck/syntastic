@@ -7,6 +7,7 @@ import org.example.concepts.Patient;
 import org.example.concepts.Gender;
 import org.example.concepts.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
+import org.example.modules.extensionModules.Epilepsy.ModuleDrugsEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
 
@@ -32,12 +33,22 @@ public class Main {
                 .flatMap(innerMap -> innerMap.values().stream()) // Stream<Snp>
                 .distinct() // Ensure uniqueness
                 .toList();
-        activeModules.add(new ModuleEpilepsy(relevantSnpEpilepsy));
+        activeModules.add(
+                new ModuleEpilepsy.Builder()
+                        .setEpilepsyTrait("traitFiles/Epilepsy.txt")
+                        .setModuleDrugsEpilepsy(
+                                new ModuleDrugsEpilepsy.Builder()
+                                        .setMaxDrugs(5)
+                                        .setSnps(relevantSnpEpilepsy)
+                                        .build()
+                        )
+                        .build()
+        );
 
         // load the odds ratios in a map
         Map<String, Map<String, Double>> oddsRatios = ModuleAttributes.loadAttributes("src/main/resources/epilepsy_odds_ratios.json");
         //System.out.println(oddsRatios);
-        ModuleAttributes moduleAttributes = new ModuleAttributes(oddsRatios);
+        ModuleAttributes moduleAttributes = new ModuleAttributes.Builder().setOddsRatios(oddsRatios).build();
         // add the new module of the attributes with the odds ratios
         activeModules.add(moduleAttributes);
 

@@ -16,11 +16,13 @@ public class ModuleAttributes extends Module {
 
     private final Map<String, Map<String, Double>> oddsRatios;
 
-    public ModuleAttributes(Map<String, Map<String, Double>> oddsRatios) {
+    // Constructor updated to use the parent class's builder pattern (if applicable)
+    private ModuleAttributes(ModuleBuilder<?, ?> builder, Map<String, Map<String, Double>> oddsRatios) {
+        super(builder);
         this.oddsRatios = oddsRatios;
     }
 
-    // Methode zum Laden der JSON-Daten in eine Map
+    // Method to load JSON data into a Map
     public static Map<String, Map<String, Double>> loadAttributes(String filePath) {
         Map<String, Map<String, Double>> oddsRatios = null;
         try {
@@ -38,21 +40,22 @@ public class ModuleAttributes extends Module {
         return oddsRatios;
     }
 
+    // Assign random attributes to the patient based on the odds ratios
     public void assignRandomAttributes(Patient patient) {
         Random random = new Random();
 
-        // Durchlaufe alle Attribute in der Map
+        // Loop through all attributes in the map
         for (Map.Entry<String, Map<String, Double>> entry : oddsRatios.entrySet()) {
             String attribute = entry.getKey();
             Map<String, Double> categories = entry.getValue();
 
             double attributeTotalOdds = 0.0;
-            // Berechne die Summe der Odds Ratios für das Attribut
+            // Calculate the sum of odds ratios for the attribute
             for (Double value : categories.values()) {
                 attributeTotalOdds += value;
             }
 
-            // Erstelle eine kumulierte Liste der Wahrscheinlichkeiten
+            // Create a cumulative list of probabilities
             double cumulativeProbability = 0.0;
             Map<String, Double> cumulativeProbabilities = new HashMap<>();
             int totalCategories = categories.size();
@@ -63,21 +66,19 @@ public class ModuleAttributes extends Module {
                 double probability = categoryEntry.getValue() / attributeTotalOdds;
                 cumulativeProbability += probability;
 
-                // Wenn es der letzte Eintrag ist, stelle sicher, dass die kumulierte Wahrscheinlichkeit genau 1 ist
+                // Ensure the cumulative probability is exactly 1 for the last category
                 if (++currentCategoryIndex == totalCategories) {
-                    // Normalisiere die kumulierte Wahrscheinlichkeit auf 1, falls nötig
                     if (cumulativeProbability > 1) {
                         cumulativeProbability = 1;
                     } else if (cumulativeProbability < 1) {
                         cumulativeProbability = 1;
                     }
                 }
-                System.out.println(cumulativeProbability);
 
                 cumulativeProbabilities.put(category, cumulativeProbability);
             }
 
-            // Ziehe eine Zufallszahl und weise die Kategorie basierend auf der kumulierten Wahrscheinlichkeit zu
+            // Generate a random value and assign a category based on cumulative probability
             double randomValue = random.nextDouble();
             for (Map.Entry<String, Double> categoryEntry : cumulativeProbabilities.entrySet()) {
                 if (randomValue < categoryEntry.getValue()) {
@@ -87,10 +88,32 @@ public class ModuleAttributes extends Module {
             }
         }
     }
-    // Überschreibe processData von der abstrakten Module-Klasse
+
+    // Override processData method from the abstract Module class
     @Override
     public Patient processData(Patient patient) {
-        assignRandomAttributes(patient); // Weist die zufälligen Attribute zu
-        return patient; // Rückgabe des Patienten nach der Attributzuweisung
+        assignRandomAttributes(patient); // Assign random attributes to the patient
+        return patient; // Return the patient after assigning the attributes
+    }
+
+    // Module-specific builder
+    public static class Builder extends Module.ModuleBuilder<ModuleAttributes, Builder> {
+
+        private Map<String, Map<String, Double>> oddsRatios;
+
+        public Builder setOddsRatios(Map<String, Map<String, Double>> oddsRatios) {
+            this.oddsRatios = oddsRatios;
+            return this;
+        }
+
+        @Override
+        protected Builder self() {
+            return null;
+        }
+
+        @Override
+        public ModuleAttributes build() {
+            return new ModuleAttributes(this, oddsRatios);
+        }
     }
 }
