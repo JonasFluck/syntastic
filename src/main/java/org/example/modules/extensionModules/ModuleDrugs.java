@@ -2,7 +2,6 @@ package org.example.modules.extensionModules;
 
 import org.example.concepts.*;
 import org.example.concepts.Module;
-import org.example.modules.extensionModules.Epilepsy.ModuleDrugsEpilepsy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,32 +9,52 @@ import java.util.Map;
 
 public abstract class ModuleDrugs extends Module {
 
-    private final Map<Drug, List<Snp>> drugSnpMap;
     private final int maxDrugs;
+    public int getMaxDrugs() {
+        return maxDrugs;
+    }
+
     private final List<Snp> snps;
+    public List<Snp> getSnps() {
+        return snps;
+    }
+
+    private final int snpsPerDrugType;
+    public int getSnpsPerDrugType() {
+        return snpsPerDrugType;
+    }
+
+    private final int percentageOfSnpsForDrugPerDrugType;
+    public int getPercentageOfSnpsForDrugPerDrugType() {
+        return percentageOfSnpsForDrugPerDrugType;
+    }
 
     // Protected constructor to enforce builder usage
     protected ModuleDrugs(Builder<?,?> builder) {
         super(builder); // Correctly passes the builder to the Module constructor
+
         this.snps = builder.snps;
-        this.drugSnpMap = createDrugSnpMap(this.snps); // Ensure drugSnpMap is created using the same SNP list
         this.maxDrugs = builder.maxDrugs;
+        int test = builder.self().maxDrugs;
+        this.snpsPerDrugType = builder.snpsPerDrugType;
+        List<Snp> snp = builder.self().snps;
+        this.percentageOfSnpsForDrugPerDrugType = builder.percentageOfSnpsForDrugPerDrugType;
     }
 
     // Get drug events for a patient
-    private List<DrugEvent> getDrugEvents(Patient patient) {
+    private List<DrugEvent> getDrugEvents(Patient patient, Map<Drug, List<Snp>> drugSnpMap) {
         List<DrugEvent> drugEvents = new ArrayList<>();
-        return assignDrug(patient, drugEvents, 1);
+        return assignDrug(patient, drugEvents, 1, drugSnpMap);
     }
 
     // Recursive method to assign drugs
-    private List<DrugEvent> assignDrug(Patient patient, List<DrugEvent> drugEvents, int drugEventCount) {
+    private List<DrugEvent> assignDrug(Patient patient, List<DrugEvent> drugEvents, int drugEventCount,  Map<Drug, List<Snp>> drugSnpMap) {
         if (drugEvents.isEmpty()) {
             // Create the first drug event
             DrugEvent newDrugEvent = createDrugEvent(drugEvents, patient, drugSnpMap);
             newDrugEvent.setDrugEventCount(drugEventCount);
             drugEvents.add(newDrugEvent);
-            return assignDrug(patient, drugEvents, drugEventCount + 1);
+            return assignDrug(patient, drugEvents, drugEventCount + 1, drugSnpMap);
         } else {
             DrugEvent lastDrugEvent = drugEvents.get(drugEvents.size() - 1);
             double chance = lastDrugEvent.isResponse() ? 0.05 : 0.8;
@@ -46,7 +65,7 @@ public abstract class ModuleDrugs extends Module {
                     DrugEvent newDrugEvent = createDrugEvent(drugEvents, patient, drugSnpMap);
                     newDrugEvent.setDrugEventCount(drugEventCount);
                     drugEvents.add(newDrugEvent);
-                    return assignDrug(patient, drugEvents, drugEventCount + 1);
+                    return assignDrug(patient, drugEvents, drugEventCount + 1, drugSnpMap);
                 }
             }
             return drugEvents;
@@ -66,12 +85,14 @@ public abstract class ModuleDrugs extends Module {
         return randomValue < chance;
     }
 
-    public abstract Map<Drug, List<Snp>> createDrugSnpMap(List<Snp> snps);
+    public abstract  Map<Drug, List<Snp>> createDrugSnpMap(List<Snp> snps, int snpsPerDrugType, int percentageOfSnpsForDrugPerDrugType);
 
     // Override processData method
     @Override
     public Patient processData(Patient patient) {
-        patient.getAttributes().put("drugEvents", getDrugEvents(patient));
+        System.out.println("Processing patient data with ModuleDrugs");
+        System.out.println("Size of snps: " + snps.size()); // Hier ist snps null aber warum ?
+        patient.getAttributes().put("drugEvents", getDrugEvents(patient, createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType)));
         return patient;
     }
 
@@ -80,6 +101,8 @@ public abstract class ModuleDrugs extends Module {
 
         public int maxDrugs;
         public List<Snp> snps;
+        public int snpsPerDrugType;
+        public int percentageOfSnpsForDrugPerDrugType;
 
         public B setMaxDrugs(int maxDrugs) {
             this.maxDrugs = maxDrugs;
@@ -91,10 +114,16 @@ public abstract class ModuleDrugs extends Module {
             return self();
         }
 
-        @Override
-        public abstract T build(); // Subclasses must implement this to return a concrete instance of ModuleDrugs
+        public B setSnpsPerDrugType(int snpsPerDrugType) {
+            this.snpsPerDrugType = snpsPerDrugType;
+            return self();
+        }
 
-        @Override
+        public B setPercentageOfSnpsForDrugPerDrugType(int percentageOfSnpsForDrugPerDrugType) {
+            this.percentageOfSnpsForDrugPerDrugType = percentageOfSnpsForDrugPerDrugType;
+            return self();
+        }
+
         protected abstract B self(); // Subclasses must implement this to return the builder instance
     }
 }

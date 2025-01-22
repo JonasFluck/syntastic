@@ -12,18 +12,31 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
     private final List<Drug> drugsInFrequency;
     private final List<Snp> snps;
 
+    private final int snpsPerDrugType;
+    private final int percentageOfSnpsForDrugPerDrugType;
+    private final double baseDrugEffectiveness;
+    private final double negativePriorDrugEvent;
+    private final double positivePriorDrugEvent;
+    private final  Map<Drug, List<Snp>> drugSnpMap;
+
     // Constructor using the builder pattern
     public ModuleDrugsEpilepsy(Builder builder) {
         super(builder); // Handles shared variables in parent class
         this.snps = Objects.requireNonNull(builder.snps, "SNPs cannot be null");
-
+        this.snpsPerDrugType = builder.snpsPerDrugType;
+        this.percentageOfSnpsForDrugPerDrugType = builder.percentageOfSnpsForDrugPerDrugType;
+        this.baseDrugEffectiveness = builder.baseDrugEffectiveness;
+        this.negativePriorDrugEvent = builder.negativePriorDrugEvent;
+        this.positivePriorDrugEvent = builder.positivePriorDrugEvent;
         // Initialize drugsInFrequency with validated data
-        this.drugsInFrequency = initializeDrugsInFrequency();
+        this.drugSnpMap = createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType);
+        this.drugsInFrequency = initializeDrugsInFrequency(drugSnpMap);
+
     }
 
-    private List<Drug> initializeDrugsInFrequency() {
+    private List<Drug> initializeDrugsInFrequency(Map<Drug, List<Snp>> drugSnpMap) {
         List<Drug> frequencyList = new ArrayList<>();
-        createDrugSnpMap(snps).keySet().forEach(drug -> {
+        drugSnpMap.keySet().forEach(drug -> {
             for (int i = 0; i < drug.getPrescriptionFrequency(); i++) {
                 frequencyList.add(drug);
             }
@@ -32,7 +45,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
     }
 
     @Override
-    public Map<Drug, List<Snp>> createDrugSnpMap(List<Snp> snps) {
+    public Map<Drug, List<Snp>> createDrugSnpMap(List<Snp> snps, int snpsPerDrugType, int percentageOfSnpsForDrugPerDrugType) {
         // Ensure SNPs are used consistently when creating the drug-SNP map
         Map<String, List<Snp>> drugTypeSnpMap = new HashMap<>();
         for (String drugType : getDistinctDrugFamilies(getDrugs())) {
@@ -40,16 +53,21 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         }
         // Shuffling and adding SNPs from the provided snps list
         Random random = new Random();
+        int i = 0;
         for (String drugType : drugTypeSnpMap.keySet()) {
+            i++;
+            if(snps == null) {
+                System.out.println( i+" "+ drugType);
+            }
             List<Snp> shuffledSnps = new ArrayList<>(snps);
             Collections.shuffle(shuffledSnps, random);
-            drugTypeSnpMap.put(drugType, shuffledSnps.subList(0, Math.min(100, shuffledSnps.size())));
+            drugTypeSnpMap.put(drugType, shuffledSnps.subList(0, Math.min(snpsPerDrugType, shuffledSnps.size())));
         }
         Map<Drug, List<Snp>> drugSnpMap = new HashMap<>();
         for (Drug drug : getDrugs()) {
             List<Snp> relevantSnps = new ArrayList<>();
             for (String family : drug.getFamily()) {
-                relevantSnps.addAll(drawPercentageOfSnps(drugTypeSnpMap.get(family), 80));
+                relevantSnps.addAll(drawPercentageOfSnps(drugTypeSnpMap.get(family), percentageOfSnpsForDrugPerDrugType));
             }
             drugSnpMap.put(drug, relevantSnps);
         }
@@ -119,7 +137,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
     }
 
     private boolean evaluatePriorDrugEvents(List<DrugEvent> priorDrugEvents, Drug drug) {
-        double chance = 0.5; // Initial neutral chance
+        double chance = baseDrugEffectiveness; // Initial neutral chance
 
         for (DrugEvent event : priorDrugEvents) {
             boolean isPositiveResponse = event.isResponse();
@@ -129,13 +147,13 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
             // Adjust chance based on overlapping drug families
             for (String family : priorDrugFamily) {
                 if (drugFamily.contains(family)) {
-                    chance += isPositiveResponse ? 0.1 : -0.1;
+                    chance += isPositiveResponse ? positivePriorDrugEvent : negativePriorDrugEvent;
                 }
             }
 
             // Penalize further for negative responses
             if (!isPositiveResponse) {
-                chance -= 0.1;
+                chance -= negativePriorDrugEvent;
             }
         }
 
@@ -158,12 +176,28 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
 
     // Builder implementation for ModuleDrugsEpilepsy
     public static class Builder extends ModuleDrugs.Builder<ModuleDrugsEpilepsy, Builder> {
-        private List<Snp> snps = new ArrayList<>();
+        private double baseDrugEffectiveness;
+        private double negativePriorDrugEvent;
+        private double positivePriorDrugEvent;
 
         @Override
         public ModuleDrugsEpilepsy build() {
-            this.snps = super.snps;
             return new ModuleDrugsEpilepsy(this);
+        }
+
+        public Builder setBaseDrugEffectiveness(double baseDrugEffectiveness) {
+            this.baseDrugEffectiveness = baseDrugEffectiveness;
+            return self();
+        }
+
+        public Builder setNegativePriorDrugEvent(double negativePriorDrugEvent) {
+            this.negativePriorDrugEvent = negativePriorDrugEvent;
+            return self();
+        }
+
+        public Builder setPositivePriorDrugEvent(double positivePriorDrugEvent) {
+            this.positivePriorDrugEvent = positivePriorDrugEvent;
+            return self();
         }
 
         @Override

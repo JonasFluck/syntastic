@@ -1,20 +1,24 @@
 package org.example.concepts;
+import org.example.SnpLoader;
 import org.example.concepts.handlers.*;
 import java.util.*;
 
 public class Parameters {
+    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("all_patients.json");
+
     //Base attributes
-    public int minAge;
-    public int maxAge;
+    public int minAge = -1;
+    public int maxAge = -1;
     public Gender gender;
-    public List<Country> countryList = new ArrayList<>();
+    public List<String> countryList;
 
     //Epilepsy attributes
-    public int snpsPerDrugType;
-    public int percentageOfSnpsForDrugPerDrugType;
-    public double baseDrugEffectiveness;
-    public double negativePriorDrugEvent;
-    public double positivePriorDrugEvent;
+    public int maxDrugs = 5;
+    public int snpsPerDrugType = 100;
+    public int percentageOfSnpsForDrugPerDrugType = 80;
+    public double baseDrugEffectiveness = 0.5;
+    public double negativePriorDrugEvent = -0.1;
+    public double positivePriorDrugEvent= 0.1;
 
 
 

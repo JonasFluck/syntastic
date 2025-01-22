@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class ModuleBaseAttributes extends Module {
 
-    private final int minAge;
-    private final int maxAge;
+    private int minAge;
+    private int maxAge;
     private final Gender gender;
     private final List<Country> countries;
     private final List<String[]> csvData;
@@ -33,7 +33,8 @@ public class ModuleBaseAttributes extends Module {
             this.csvData = CsvLoader.readCSVFromResources("euro_pop.csv");
             csvData.remove(0); // Remove the header row
             countries = parseCsvData(csvData);
-            countries.removeIf(country -> !inputCountries.contains(country.getName()));
+            if(inputCountries != null)
+                countries.removeIf(country -> !inputCountries.contains(country.getName()));
             totalPopulation = countries.stream().mapToInt(Country::getPopulation).sum();
         } catch (IOException | CsvValidationException e) {
             throw new RuntimeException("Failed to load CSV data", e);
@@ -43,8 +44,8 @@ public class ModuleBaseAttributes extends Module {
     // Builder class extending Module.ModuleBuilder
     public static class Builder extends Module.ModuleBuilder<ModuleBaseAttributes, Builder> {
 
-        private int minAge = 0; // Default value
-        private int maxAge = 100; // Default value
+        private int minAge; // Default value
+        private int maxAge; // Default value
         private List<String> countries = new ArrayList<>();
         private Gender gender;
 
@@ -157,13 +158,13 @@ public class ModuleBaseAttributes extends Module {
     }
 
     // Method to select a random age within a country's age groups
-    private int getRandomAge(Country country, Optional<Integer> minAge, Optional<Integer> maxAge) {
+    private int getRandomAge(Country country, int minAge, int maxAge) {
         Random random = new Random();
 
         List<AgeGroup> filteredAgeGroups = country.getAgeGroups().stream()
                 .filter(ageGroup ->
-                        (!minAge.isPresent() || ageGroup.getAge() >= minAge.get()) &&
-                                (!maxAge.isPresent() || ageGroup.getAge() <= maxAge.get()))
+                        (minAge == -1 || ageGroup.getAge() >= minAge) &&
+                                (maxAge == -1 || ageGroup.getAge() <= maxAge))
                 .toList();
 
         int totalPopulation = filteredAgeGroups.stream()
@@ -200,7 +201,7 @@ public class ModuleBaseAttributes extends Module {
     @Override
     public Patient processData(Patient patient) {
         Country country = getRandomCountry();
-        int age = getRandomAge(country, Optional.of(minAge), Optional.of(maxAge));
+        int age = getRandomAge(country, minAge, maxAge);
         Gender gender = getRandomGender(
                 country.getAgeGroups().stream()
                         .filter(group -> group.getAge() == age)

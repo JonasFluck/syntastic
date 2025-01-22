@@ -2,12 +2,9 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.example.concepts.*;
 import org.example.concepts.Module;
-import org.example.concepts.Patient;
-import org.example.concepts.Gender;
-import org.example.concepts.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
-import org.example.modules.extensionModules.Epilepsy.ModuleDrugsEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
 
@@ -20,40 +17,11 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("all_patients.json");
-        List<Module> activeModules = new ArrayList<>();
-        activeModules.add(new ModuleBaseAttributes.Builder()
-                        .setMinAge(25)
-                        .setMaxAge(75)
-                        .setGender(Gender.Male)
-                        .setCountries(List.of("Germany", "France", "Italy"))
-                .build());
-
-        List<Snp> relevantSnpEpilepsy = patientData.values().stream() // Stream<Map<String, Snp>>
-                .flatMap(innerMap -> innerMap.values().stream()) // Stream<Snp>
-                .distinct() // Ensure uniqueness
-                .toList();
-        activeModules.add(
-                new ModuleEpilepsy.Builder()
-                        .setEpilepsyTrait("traitFiles/Epilepsy.txt")
-                        .setModuleDrugsEpilepsy(
-                                new ModuleDrugsEpilepsy.Builder()
-                                        .setMaxDrugs(5)
-                                        .setSnps(relevantSnpEpilepsy)
-                                        .build()
-                        )
-                        .build()
-        );
-
-        // load the odds ratios in a map
-        Map<String, Map<String, Double>> oddsRatios = ModuleAttributes.loadAttributes("src/main/resources/epilepsy_odds_ratios.json");
-        //System.out.println(oddsRatios);
-        ModuleAttributes moduleAttributes = new ModuleAttributes.Builder().setOddsRatios(oddsRatios).build();
-        // add the new module of the attributes with the odds ratios
-        activeModules.add(moduleAttributes);
-
-        Generator generator = new Generator(activeModules);
-        List<Patient> patients = generator.generatePatients(patientData);
+        Parameters parameters = new Parameters(args);
+        ModuleFactory moduleFactory = new ModuleFactory(parameters);
+        List<Module> activeModules = moduleFactory.generateModules(new ArrayList<>(List.of(ModuleBaseAttributes.class, ModuleEpilepsy.class, ModuleAttributes.class)));
+        PatientFactory patientFactory = new PatientFactory(activeModules);
+        List<Patient> patients = patientFactory.generatePatients(parameters.patientData);
         exportResults(patients, "patients.json");
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
