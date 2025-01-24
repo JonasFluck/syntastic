@@ -8,14 +8,13 @@ import org.example.helper.CsvLoader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class ModuleBaseAttributes extends Module {
 
     private int minAge;
     private int maxAge;
-    private final Gender gender;
+    private final List<Gender> genders;
     private final List<Country> countries;
     private final List<String[]> csvData;
     private final int totalPopulation;
@@ -25,7 +24,7 @@ public class ModuleBaseAttributes extends Module {
         super(builder); // Pass the builder to the parent class constructor
         this.minAge = builder.minAge;
         this.maxAge = builder.maxAge;
-        this.gender = builder.gender;
+        this.genders = builder.genders;
 
         List<String> inputCountries = builder.countries;
 
@@ -47,7 +46,7 @@ public class ModuleBaseAttributes extends Module {
         private int minAge; // Default value
         private int maxAge; // Default value
         private List<String> countries = new ArrayList<>();
-        private Gender gender;
+        private List<Gender> genders = new ArrayList<>();
 
         // Builder setter methods
         public Builder setMinAge(int minAge) {
@@ -65,8 +64,8 @@ public class ModuleBaseAttributes extends Module {
             return this;
         }
 
-        public Builder setGender(Gender gender) {
-            this.gender = gender;
+        public Builder setGenders(List<Gender> genders) {
+            this.genders = genders;
             return this;
         }
 
@@ -189,13 +188,17 @@ public class ModuleBaseAttributes extends Module {
     }
 
     private Gender getRandomGender(AgeGroup ageGroup) {
-        if (gender != null) {
-            return gender;
+        if (genders != null && !genders.isEmpty()) {
+            Random random = new Random();
+            return genders.get(random.nextInt(genders.size())); // Randomly select from the provided list
         }
+
+        // Default behavior: Randomly choose based on the population distribution
         Random random = new Random();
         int randomValue = random.nextInt(ageGroup.getTotalPopulation());
         return randomValue < ageGroup.getPopulationMale() ? Gender.Male : Gender.Female;
     }
+
 
     // Implementation of processData method
     @Override

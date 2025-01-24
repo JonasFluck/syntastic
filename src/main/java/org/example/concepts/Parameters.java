@@ -9,7 +9,7 @@ public class Parameters {
     //Base attributes
     public int minAge = -1;
     public int maxAge = -1;
-    public Gender gender;
+    public List<Gender> gender;
     public List<String> countryList;
 
     //Epilepsy attributes
@@ -37,23 +37,17 @@ public class Parameters {
                 if (keyValue.length == 2) {
                     String name = keyValue[0];
                     String value = keyValue[1];
+                    //System.out.println(name + "=" + value);
+
                     boolean handled = false;
-
                     for (ArgumentHandler handler : argumentHandlers) {
-                        try {
-                            handler.handle(name, value, this);
-                            handled = true;
+                        handled = handler.handle(name, value, this);
+                        if (handled)
                             break;
-                        } catch (IllegalArgumentException e) {
-                            // Continue to the next handler
-                        }
                     }
-
                     if (!handled) {
                         System.out.println("Invalid argument: " + name);
                     }
-                } else {
-                    System.out.println("Invalid argument: " + arg);
                 }
             }
         }

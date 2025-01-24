@@ -28,7 +28,7 @@ public class Main {
     }
 
     private static void exportResults(List<Patient> patients, String filename) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeSpecialFloatingPointValues().create();
         try (FileWriter writer = new FileWriter(filename)) {
             // Serialize the list of patients to JSON and write to a file
             gson.toJson(patients, writer);

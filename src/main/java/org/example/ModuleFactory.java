@@ -22,7 +22,7 @@ public class ModuleFactory {
                 modules.add(new ModuleBaseAttributes.Builder()
                         .setMinAge(parameters.minAge)
                         .setMaxAge(parameters.maxAge)
-                        .setGender(parameters.gender)
+                        .setGenders(parameters.gender)
                         .setCountries(parameters.countryList)
                         .build());
             }

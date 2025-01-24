@@ -14,11 +14,6 @@ public class PatientFactory {
         this.modules = modules;
     }
 
-    public PatientFactory()
-    {
-
-    }
-
     public List<Patient> generatePatients(Map<String, Map<String,Snp>> snpData){
         List<CompletableFuture<Patient>> futureTasks = new ArrayList<>();
         for (Map.Entry<String, Map<String,Snp>> entry : snpData.entrySet()) {
