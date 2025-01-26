@@ -28,7 +28,7 @@ public class ModuleFactory {
             }
             if(moduleClass == ModuleEpilepsy.class){
                 modules.add(new ModuleEpilepsy.Builder()
-                        .setEpilepsyTrait("traitFiles/Epilepsy.txt")
+                        .setEpilepsyTrait("config/traitFiles/Epilepsy.txt")
                         .setModuleDrugsEpilepsy(
                                 new ModuleDrugsEpilepsy.Builder()
                                         .setMaxDrugs(parameters.maxDrugs)
