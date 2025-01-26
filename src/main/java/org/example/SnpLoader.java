@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.*;
 
@@ -10,18 +11,27 @@ import com.google.gson.JsonObject;
 import org.example.concepts.Snp;
 
 public class SnpLoader {
-    public static Map<String, Map<String,Snp>> loadSnps(String filePath) {
+    public static Map<String, Map<String, Snp>> loadSnps(String folderPath) {
         try {
             Gson gson = new Gson();
-            JsonArray jsonArray = gson.fromJson(new FileReader(filePath), JsonArray.class);
-            Map<String, Map<String,Snp>> patientSnps = new HashMap<>();
+            Map<String, Map<String, Snp>> patientSnps = new HashMap<>();
 
-            for (JsonElement patientElement : jsonArray) {
-                JsonObject patientObject = patientElement.getAsJsonObject();
+            // List all JSON files in the folder
+            File folder = new File(folderPath);
+            File[] jsonFiles = folder.listFiles((dir, name) -> name.endsWith(".json"));
+
+            if (jsonFiles == null || jsonFiles.length == 0) {
+                System.out.println("No JSON files found in folder: " + folderPath);
+                return patientSnps;
+            }
+
+            // Process each JSON file
+            for (File jsonFile : jsonFiles) {
+                JsonObject patientObject = gson.fromJson(new FileReader(jsonFile), JsonObject.class);
                 String patientId = patientObject.get("patient_id").getAsString();
                 JsonArray snpsArray = patientObject.getAsJsonArray("snps");
 
-                Map<String,Snp> snpsList = new HashMap<>();
+                Map<String, Snp> snpsList = new HashMap<>();
                 for (JsonElement snpElement : snpsArray) {
                     JsonObject snpObject = snpElement.getAsJsonObject();
 
@@ -34,7 +44,7 @@ public class SnpLoader {
                     snp.setExpression(snpObject.get("expression").getAsString());
                     snp.setRsId(snpObject.get("id").getAsString());
 
-                    snpsList.put(snp.getRsId(),snp);
+                    snpsList.put(snp.getRsId(), snp);
                 }
 
                 // Map patient ID to the list of SNPs

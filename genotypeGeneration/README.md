@@ -44,4 +44,12 @@ Once the paths are updated, run `script.py` to generate the genotype data:
 
 ```bash
 python script.py
-
+```
+## VCFtoJson Script: `VCFtoJSON.py`
+The script converts the created VCF Files for every
+chromosome into on big JSON. This JSON file will be the input for the 
+phenotype generation. Before running the script, you
+must update the paths.
+```bash
+python VCFtoJSON.py`
+```

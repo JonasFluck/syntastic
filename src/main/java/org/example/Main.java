@@ -19,7 +19,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("all_patients.json");
+        Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("/src/main/resources/patients_temp");
         List<Module> activeModules = new ArrayList<>();
         activeModules.add(new ModuleBaseAttributes.Builder()
                         .setMinAge(25)
