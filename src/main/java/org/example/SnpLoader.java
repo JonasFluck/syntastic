@@ -29,8 +29,9 @@ public class SnpLoader {
             int patientId = 1;
             // Process each JSON file
             for (File jsonFile : jsonFiles) {
-                JsonObject patientObject = gson.fromJson(new FileReader(jsonFile), JsonObject.class);
-                JsonArray snpsArray = patientObject.getAsJsonArray("snps");
+                JsonElement rootElement = gson.fromJson(new FileReader(jsonFile), JsonElement.class);
+
+                JsonArray snpsArray = rootElement.getAsJsonArray();
 
                 Map<String, Snp> snpsList = new HashMap<>();
                 for (JsonElement snpElement : snpsArray) {
