@@ -25,10 +25,11 @@ public class SnpLoader {
                 return patientSnps;
             }
 
+            //Initial patient ID
+            int patientId = 1;
             // Process each JSON file
             for (File jsonFile : jsonFiles) {
                 JsonObject patientObject = gson.fromJson(new FileReader(jsonFile), JsonObject.class);
-                String patientId = patientObject.get("patient_id").getAsString();
                 JsonArray snpsArray = patientObject.getAsJsonArray("snps");
 
                 Map<String, Snp> snpsList = new HashMap<>();
@@ -46,9 +47,10 @@ public class SnpLoader {
 
                     snpsList.put(snp.getRsId(), snp);
                 }
-
+                String patientIdString = String.valueOf(patientId);
                 // Map patient ID to the list of SNPs
-                patientSnps.put(patientId, snpsList);
+                patientSnps.put(patientIdString, snpsList);
+                patientId++;
             }
 
             return patientSnps;
