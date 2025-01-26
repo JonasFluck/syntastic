@@ -95,7 +95,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
     }
 
     private List<Drug> getDrugs() {
-        return DrugLoader.loadDrugs("drugs.json");
+        return DrugLoader.loadDrugs("./config/drugs.json");
     }
 
     @Override

@@ -47,7 +47,7 @@ public class ModuleFactory {
                 );
             }
             if(moduleClass == ModuleAttributes.class){
-                modules.add(new ModuleAttributes.Builder().setOddsRatios(ModuleAttributes.loadAttributes("src/main/resources/epilepsy_odds_ratios.json")).build());
+                modules.add(new ModuleAttributes.Builder().setOddsRatios(ModuleAttributes.loadAttributes("src/main/resources/config/epilepsy_odds_ratios.json")).build());
             }
         }
         return modules;

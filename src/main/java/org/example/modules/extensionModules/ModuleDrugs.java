@@ -10,24 +10,9 @@ import java.util.Map;
 public abstract class ModuleDrugs extends Module {
 
     private final int maxDrugs;
-    public int getMaxDrugs() {
-        return maxDrugs;
-    }
-
     private final List<Snp> snps;
-    public List<Snp> getSnps() {
-        return snps;
-    }
-
     private final int snpsPerDrugType;
-    public int getSnpsPerDrugType() {
-        return snpsPerDrugType;
-    }
-
     private final int percentageOfSnpsForDrugPerDrugType;
-    public int getPercentageOfSnpsForDrugPerDrugType() {
-        return percentageOfSnpsForDrugPerDrugType;
-    }
 
     // Protected constructor to enforce builder usage
     protected ModuleDrugs(Builder<?,?> builder) {
@@ -35,9 +20,7 @@ public abstract class ModuleDrugs extends Module {
 
         this.snps = builder.snps;
         this.maxDrugs = builder.maxDrugs;
-        int test = builder.self().maxDrugs;
         this.snpsPerDrugType = builder.snpsPerDrugType;
-        List<Snp> snp = builder.self().snps;
         this.percentageOfSnpsForDrugPerDrugType = builder.percentageOfSnpsForDrugPerDrugType;
     }
 

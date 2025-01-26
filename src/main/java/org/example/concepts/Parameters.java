@@ -4,7 +4,7 @@ import org.example.concepts.handlers.*;
 import java.util.*;
 
 public class Parameters {
-    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("/src/main/resources/config/patients_temp");
+    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("./src/main/resources");
 
     //Base attributes
     public int minAge = -1;

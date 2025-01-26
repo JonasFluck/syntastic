@@ -29,7 +29,7 @@ public class ModuleBaseAttributes extends Module {
         List<String> inputCountries = builder.countries;
 
         try {
-            this.csvData = CsvLoader.readCSVFromResources("euro_pop.csv");
+            this.csvData = CsvLoader.readCSVFromResources("./config/euro_pop.csv");
             csvData.remove(0); // Remove the header row
             countries = parseCsvData(csvData);
             if(inputCountries != null)
