@@ -4,12 +4,12 @@ import org.example.concepts.handlers.*;
 import java.util.*;
 
 public class Parameters {
-    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("./src/main/resources");
+    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
 
     //Base attributes
-    public int minAge = -1;
-    public int maxAge = -1;
-    public List<Gender> gender;
+    public int minAge = 16;
+    public int maxAge = 65;
+    public List<Gender> gender = new ArrayList<>();
     public List<String> countryList;
 
     //Epilepsy attributes

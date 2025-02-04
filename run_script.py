@@ -7,10 +7,10 @@ java_program = "org.example.Main"
 
 # Define the arguments
 args = [
-    "--minAge=1",
-    "--maxAge=2",
+    "--minAge=18",
+    "--maxAge=75",
     "--gender=Male,Female",
-    "--countryList=Germany,Italy,France",
+    "--countryList=Germany including former GDR,Italy,France,Spain,Switzerland,Denmark,Croatia",
     "--maxDrugs=6",
     "--snpsPerDrugType=100",
     "--percentageOfSnpsForDrugPerDrugType=80",
