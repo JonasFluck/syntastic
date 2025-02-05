@@ -1,50 +1,56 @@
 package org.example;
 
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import org.example.concepts.Snp;
 
 public class SnpLoader {
-    public static Map<String, Map<String,Snp>> loadSnps(String filePath) {
-        try {
-            Gson gson = new Gson();
-            JsonArray jsonArray = gson.fromJson(new FileReader(filePath), JsonArray.class);
-            Map<String, Map<String,Snp>> patientSnps = new HashMap<>();
+    public static Map<String, Map<String, Snp>> loadSnps(String csvFilePath) {
+        Map<String, Map<String, Snp>> patientSnps = new HashMap<>();
 
-            for (JsonElement patientElement : jsonArray) {
-                JsonObject patientObject = patientElement.getAsJsonObject();
-                String patientId = patientObject.get("patient_id").getAsString();
-                JsonArray snpsArray = patientObject.getAsJsonArray("snps");
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            boolean headerSkipped = false;  // To skip the first line (header)
 
-                Map<String,Snp> snpsList = new HashMap<>();
-                for (JsonElement snpElement : snpsArray) {
-                    JsonObject snpObject = snpElement.getAsJsonObject();
-
-                    // Create an SNP object
-                    Snp snp = new Snp();
-                    snp.setChromosome(Integer.parseInt(snpObject.get("chromosome").getAsString()));
-                    snp.setPosition(Integer.parseInt(snpObject.get("position").getAsString()));
-                    snp.setRef(snpObject.get("reference").getAsString().charAt(0));
-                    snp.setAlt(snpObject.get("alternative").getAsString().charAt(0));
-                    snp.setExpression(snpObject.get("expression").getAsString());
-                    snp.setRsId(snpObject.get("id").getAsString());
-
-                    snpsList.put(snp.getRsId(),snp);
+            while ((line = br.readLine()) != null) {
+                // Skip header line
+                if (!headerSkipped) {
+                    headerSkipped = true;
+                    continue;
                 }
 
-                // Map patient ID to the list of SNPs
-                patientSnps.put(patientId, snpsList);
+                // Split CSV line by comma
+                String[] parts = line.split(",");
+
+                // Extract fields
+                String patientId = parts[0];
+                int chromosome = Integer.parseInt(parts[1]);
+                String snpId = parts[2];
+                int position = Integer.parseInt(parts[3]);
+                char reference = parts[4].charAt(0);
+                char alternative = parts[5].charAt(0);
+                String expression = parts[6];
+
+                // Create SNP object
+                Snp snp = new Snp();
+                snp.setRsId(snpId);
+                snp.setChromosome(chromosome);
+                snp.setPosition(position);
+                snp.setRef(reference);
+                snp.setAlt(alternative);
+                snp.setExpression(expression);
+
+                // Add to patient SNP map
+                patientSnps.computeIfAbsent(patientId, k -> new HashMap<>()).put(snpId, snp);
             }
 
-            return patientSnps;
+            System.out.println("CSV successfully loaded into memory.");
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            System.err.println("Error reading CSV file: " + csvFilePath);
         }
+
+        return patientSnps;
     }
 }

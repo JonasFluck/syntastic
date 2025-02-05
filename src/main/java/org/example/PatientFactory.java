@@ -8,13 +8,11 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-public class Generator {
+public class PatientFactory {
     private List<Module> modules = new ArrayList<>();
-    public Generator(List<Module> modules){
+    public PatientFactory(List<Module> modules){
         this.modules = modules;
     }
-
-    public Generator(){}
 
     public List<Patient> generatePatients(Map<String, Map<String,Snp>> snpData){
         List<CompletableFuture<Patient>> futureTasks = new ArrayList<>();

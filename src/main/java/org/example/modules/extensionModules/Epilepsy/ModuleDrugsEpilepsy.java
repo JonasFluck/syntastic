@@ -1,156 +1,208 @@
 package org.example.modules.extensionModules.Epilepsy;
 
-import org.example.concepts.Drug;
-import org.example.concepts.DrugEvent;
-import org.example.concepts.Patient;
-import org.example.concepts.Snp;
-import org.example.helper.AttributeUtils;
+import org.example.concepts.*;
+import org.example.helper.DrugLoader;
 import org.example.modules.extensionModules.ModuleDrugs;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class ModuleDrugsEpilepsy extends ModuleDrugs {
-    private final List<Drug> drugsInFrequency;
 
-    public ModuleDrugsEpilepsy(Map<Drug, List<Snp>> drugSnpMap, int maxDrugs) {
-        super(drugSnpMap, maxDrugs);
-        List<Drug> drugs = drugSnpMap.keySet().stream().toList();
-        this.drugsInFrequency = new ArrayList<>();
-        for (Drug drug : drugs) {
+    private final List<Drug> drugsInFrequency;
+    private final List<Snp> snps;
+
+    private final int snpsPerDrugType;
+    private final int percentageOfSnpsForDrugPerDrugType;
+    private final double baseDrugEffectiveness;
+    private final double negativePriorDrugEvent;
+    private final double positivePriorDrugEvent;
+    private final  Map<Drug, List<Snp>> drugSnpMap;
+
+    // Constructor using the builder pattern
+    public ModuleDrugsEpilepsy(Builder builder) {
+        super(builder); // Handles shared variables in parent class
+        this.snps = Objects.requireNonNull(builder.snps, "SNPs cannot be null");
+        this.snpsPerDrugType = builder.snpsPerDrugType;
+        this.percentageOfSnpsForDrugPerDrugType = builder.percentageOfSnpsForDrugPerDrugType;
+        this.baseDrugEffectiveness = builder.baseDrugEffectiveness;
+        this.negativePriorDrugEvent = builder.negativePriorDrugEvent;
+        this.positivePriorDrugEvent = builder.positivePriorDrugEvent;
+        // Initialize drugsInFrequency with validated data
+        this.drugSnpMap = createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType);
+        this.drugsInFrequency = initializeDrugsInFrequency(drugSnpMap);
+
+    }
+
+    private List<Drug> initializeDrugsInFrequency(Map<Drug, List<Snp>> drugSnpMap) {
+        List<Drug> frequencyList = new ArrayList<>();
+        drugSnpMap.keySet().forEach(drug -> {
             for (int i = 0; i < drug.getPrescriptionFrequency(); i++) {
-                drugsInFrequency.add(drug);
+                frequencyList.add(drug);
             }
-        }
+        });
+        return Collections.unmodifiableList(frequencyList); // Immutable for safety
     }
 
     @Override
-    public DrugEvent createDrugEvent(List<DrugEvent> priorDrugEvents, Patient patient, Map<Drug, List<Snp>> drugSnpMap){
+    public Map<Drug, List<Snp>> createDrugSnpMap(List<Snp> snps, int snpsPerDrugType, int percentageOfSnpsForDrugPerDrugType) {
+        // Ensure SNPs are used consistently when creating the drug-SNP map
+        Map<String, List<Snp>> drugTypeSnpMap = new HashMap<>();
+        for (String drugType : getDistinctDrugFamilies(getDrugs())) {
+            drugTypeSnpMap.put(drugType, new ArrayList<>());
+        }
+        // Shuffling and adding SNPs from the provided snps list
+        Random random = new Random();
+        int i = 0;
+        for (String drugType : drugTypeSnpMap.keySet()) {
+            i++;
+            if(snps == null) {
+                System.out.println( i+" "+ drugType);
+            }
+            List<Snp> shuffledSnps = new ArrayList<>(snps);
+            Collections.shuffle(shuffledSnps, random);
+            drugTypeSnpMap.put(drugType, shuffledSnps.subList(0, Math.min(snpsPerDrugType, shuffledSnps.size())));
+        }
+        Map<Drug, List<Snp>> drugSnpMap = new HashMap<>();
+        for (Drug drug : getDrugs()) {
+            List<Snp> relevantSnps = new ArrayList<>();
+            for (String family : drug.getFamily()) {
+                relevantSnps.addAll(drawPercentageOfSnps(drugTypeSnpMap.get(family), percentageOfSnpsForDrugPerDrugType));
+            }
+            drugSnpMap.put(drug, relevantSnps);
+        }
+        return drugSnpMap;
+    }
+
+
+    private List<String> getDistinctDrugFamilies(List<Drug> drugs) {
+        return drugs.stream()
+                .flatMap(drug -> Arrays.stream(drug.getFamily()))
+                .distinct()
+                .toList();
+    }
+
+    private List<Snp> drawPercentageOfSnps(List<Snp> snps, int percentage) {
+        if (snps == null || snps.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        List<Snp> shuffledSnps = new ArrayList<>(snps);
+        Collections.shuffle(shuffledSnps);
+
+        int drawCount = (int) Math.ceil((percentage / 100.0) * snps.size());
+        return shuffledSnps.subList(0, Math.min(drawCount, shuffledSnps.size()));
+    }
+
+    private List<Drug> getDrugs() {
+        return DrugLoader.loadDrugs("config/drugs.json");
+    }
+
+    @Override
+    public DrugEvent createDrugEvent(List<DrugEvent> priorDrugEvents, Patient patient, Map<Drug, List<Snp>> drugSnpMap) {
+        Random random = new Random();
         DrugEvent drugEvent = new DrugEvent();
-        if(priorDrugEvents.isEmpty()) {
-            //First Drug is simply drawn randomly from the list of drugs
-            Random random = new Random();
-            Drug drug = drugsInFrequency.get(random.nextInt(drugsInFrequency.size()));
-            drugEvent.setDrug(drug);
-            drugEvent.setResponse(getResponse(priorDrugEvents,drugEvent, patient, drugSnpMap));
+
+        // Ensure available drugs are calculated properly
+        List<Drug> availableDrugs = new ArrayList<>(drugsInFrequency);
+        if (!priorDrugEvents.isEmpty()) {
+            availableDrugs.removeAll(priorDrugEvents.stream()
+                    .map(DrugEvent::getDrug)
+                    .toList());
         }
-        else {
-            List<Drug> notAlreadyPrescribedDrugs = new ArrayList<>(drugsInFrequency);
-            notAlreadyPrescribedDrugs.removeAll(
-                    priorDrugEvents.stream()
-                            .map(DrugEvent::getDrug) // Extract drugs from priorDrugEvents
-                            .toList()
-            );
-            Random random = new Random();
-            Drug drug = notAlreadyPrescribedDrugs.get(random.nextInt(notAlreadyPrescribedDrugs.size()));
-            drugEvent.setDrug(drug);
-            drugEvent.setResponse(getResponse(priorDrugEvents,drugEvent, patient, drugSnpMap));
-        }
+
+        Drug selectedDrug = availableDrugs.get(random.nextInt(availableDrugs.size()));
+        drugEvent.setDrug(selectedDrug);
+        drugEvent.setResponse(getResponse(priorDrugEvents, drugEvent, patient, drugSnpMap));
+
         return drugEvent;
     }
 
-    /**
-     * Determines the likelihood of a positive response to a drug based on the patient's SNP profile.
-     * The response is influenced by the presence of mutations in relevant SNPs, and a level of uncertainty is added.
-     *
-     * @param drugEvent The drug event for which the response is being calculated.
-     * @param patient The patient whose SNPs are being evaluated.
-     * @param drugSnpMap A map of drugs to their relevant SNPs.
-     * @return boolean True if the drug has a positive response for the patient, false otherwise.
-     */
-    private boolean getResponse(List<DrugEvent> priorDrugEvents,DrugEvent drugEvent, Patient patient, Map<Drug, List<Snp>> drugSnpMap) {
-        boolean drugResponse = false;
-        // Get the list of relevant SNPs for the given drug
+    private boolean getResponse(List<DrugEvent> priorDrugEvents, DrugEvent drugEvent, Patient patient, Map<Drug, List<Snp>> drugSnpMap) {
         Drug drug = drugEvent.getDrug();
-        List<Snp> relevantDrugSnpList = drugSnpMap.get(drug);
-        Set<String> relevantDrugSnpSet = relevantDrugSnpList.stream().map(Snp::getRsId).collect(Collectors.toSet());
+        List<Snp> relevantSnps = drugSnpMap.getOrDefault(drug, Collections.emptyList());
+        Set<String> relevantSnpIds = relevantSnps.stream().map(Snp::getRsId).collect(Collectors.toSet());
 
-        double mutationPercentage = getMutationPercentage(patient, relevantDrugSnpList, relevantDrugSnpSet);
+        double mutationRate = getMutationPercentage(patient, relevantSnps, relevantSnpIds);
+        double variability = (new Random().nextDouble() - 0.5) * 0.2;
+        double adjustedRate = Math.max(0, Math.min(1, mutationRate + variability));
 
-        // Add variability (like + or - 10%) to the mutation score for uncertainty
-        Random random = new Random();
-        double variability = (random.nextDouble() - 0.5) * 0.2; // 0 - 10% variability
-        double adjustedMutationPercentage = mutationPercentage + variability;
-
-        // Ensure the adjusted mutation percentage is between 0 and 1
-        adjustedMutationPercentage = Math.max(0, Math.min(1, adjustedMutationPercentage));
-        System.out.println(adjustedMutationPercentage);
-        drugEvent.setSnpDrugMutationRate(adjustedMutationPercentage);
-        // Randomly determine the drug response based on the adjusted mutation percentage
-        // Likelihood to be randomly greater than adjustedMutationPercentage is:
-        // high for a small adjustedMutationPercentage -> drug works -> return true
-        // low for a high adjustedMutationPercentage -> drug does not work -> return false
+        drugEvent.setSnpDrugMutationRate(adjustedRate);
 
         if (!priorDrugEvents.isEmpty() && !evaluatePriorDrugEvents(priorDrugEvents, drug)) {
             return false;
         }
 
-        if (adjustedMutationPercentage > random.nextDouble()) {
-            return false;
-        }
-        /*
-        // Other approach with a hard threshold of 0.25
-        if(adjustedMutationPercentage < 0.25){
-            drugResponse = true;
-        }
-         */
-        return true;
+        return new Random().nextDouble() > adjustedRate;
     }
 
     private boolean evaluatePriorDrugEvents(List<DrugEvent> priorDrugEvents, Drug drug) {
-        // Check if the drug has already been prescribed
-        double chance = 0.5;
-        for (DrugEvent priorDrugEvent : priorDrugEvents) {
-            if(priorDrugEvent.isResponse()){
-                //response of prior drug event was true --> chances are higher that a drug with same family will also have a response
-                for(String family : drug.getFamily()){
-                    if(Arrays.asList(priorDrugEvent.getDrug().getFamily()).contains(family)){
-                        chance += 0.1;
-                    }
+        double chance = baseDrugEffectiveness; // Initial neutral chance
+
+        for (DrugEvent event : priorDrugEvents) {
+            boolean isPositiveResponse = event.isResponse();
+            List<String> drugFamily = Arrays.asList(drug.getFamily());
+            List<String> priorDrugFamily = Arrays.asList(event.getDrug().getFamily());
+
+            // Adjust chance based on overlapping drug families
+            for (String family : priorDrugFamily) {
+                if (drugFamily.contains(family)) {
+                    chance += isPositiveResponse ? positivePriorDrugEvent : negativePriorDrugEvent;
                 }
             }
-            else {
-                //response of prior drug event was false --> chances are lower
-                //first penalize each time a drug was prescribed and hasnt worked
-                chance -= 0.1;
-                for(String family : drug.getFamily()){
-                    if(Arrays.asList(priorDrugEvent.getDrug().getFamily()).contains(family)){
-                        chance -= 0.1;
-                    }
-                }
+
+            // Penalize further for negative responses
+            if (!isPositiveResponse) {
+                chance -= negativePriorDrugEvent;
             }
         }
-        Random random = new Random();
-        return random.nextDouble() < chance;
+
+        // Return true if the calculated chance indicates likelihood of success
+        return new Random().nextDouble() < chance;
     }
 
 
-    private double getMutationPercentage(Patient patient, List<Snp> relevantDrugSnpList, Set<String> relevantDrugSnpSet) {
-        int mutatedCount = 0;  // Counter for mutated SNPs
-        int totalRelevantSNPs = relevantDrugSnpList.size(); // Total number of relevant SNPs for the drug
+    private double getMutationPercentage(Patient patient, List<Snp> relevantSnps, Set<String> relevantSnpIds) {
+        long mutatedCount = patient.getSnps().entrySet().stream()
+                .filter(entry -> relevantSnpIds.contains(entry.getKey()))
+                .filter(entry -> {
+                    String expression = entry.getValue().getExpression();
+                    return expression.equals("0/1") || expression.equals("1/1");
+                })
+                .count();
 
-        // Iterate through the patient's SNPs and count mutations in the relevant ones
-        for (Map.Entry<String, Snp> patientSnpEntry : patient.getSnps().entrySet()) {
-            String rsIdPatientSnp = patientSnpEntry.getKey();
-            Snp patientSnp = patientSnpEntry.getValue();
-
-            // Check if the SNP is relevant for the drug
-            if (relevantDrugSnpSet.contains(rsIdPatientSnp)) {
-                String expression = patientSnp.getExpression();
-
-                // Evaluate the SNP mutation based on the patient's genotype
-                switch (expression) {
-                    case "0/0": // No mutation
-                        break;
-                    case "0/1":
-                    case "1/1": // Mutation present
-                        mutatedCount++;
-                        break;
-                }
-            }
-        }
-        // Calculate the mutation percentage for the relevant SNPs
-        return (double) mutatedCount / totalRelevantSNPs;
+        return (double) mutatedCount / relevantSnps.size();
     }
 
+    // Builder implementation for ModuleDrugsEpilepsy
+    public static class Builder extends ModuleDrugs.Builder<ModuleDrugsEpilepsy, Builder> {
+        private double baseDrugEffectiveness;
+        private double negativePriorDrugEvent;
+        private double positivePriorDrugEvent;
+
+        @Override
+        public ModuleDrugsEpilepsy build() {
+            return new ModuleDrugsEpilepsy(this);
+        }
+
+        public Builder setBaseDrugEffectiveness(double baseDrugEffectiveness) {
+            this.baseDrugEffectiveness = baseDrugEffectiveness;
+            return self();
+        }
+
+        public Builder setNegativePriorDrugEvent(double negativePriorDrugEvent) {
+            this.negativePriorDrugEvent = negativePriorDrugEvent;
+            return self();
+        }
+
+        public Builder setPositivePriorDrugEvent(double positivePriorDrugEvent) {
+            this.positivePriorDrugEvent = positivePriorDrugEvent;
+            return self();
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
 }

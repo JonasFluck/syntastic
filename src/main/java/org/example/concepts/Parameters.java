@@ -1,12 +1,27 @@
 package org.example.concepts;
+import org.example.SnpLoader;
 import org.example.concepts.handlers.*;
 import java.util.*;
 
 public class Parameters {
-    public int minAge;
-    public int maxAge;
-    public Gender gender;
-    public List<Country> countryList = new ArrayList<>();
+    public Map<String,Map<String, Snp>> patientData = SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
+
+    //Base attributes
+    public int minAge = 16;
+    public int maxAge = 65;
+    public List<Gender> gender = new ArrayList<>();
+    public List<String> countryList;
+
+    //Epilepsy attributes
+    public int maxDrugs = 5;
+    public int snpsPerDrugType = 100;
+    public int percentageOfSnpsForDrugPerDrugType = 80;
+    public double baseDrugEffectiveness = 0.5;
+    public double negativePriorDrugEvent = -0.1;
+    public double positivePriorDrugEvent= 0.1;
+
+
+
 
     // Map to store argument handlers
     private final List<ArgumentHandler> argumentHandlers = new ArrayList<>();
@@ -22,23 +37,17 @@ public class Parameters {
                 if (keyValue.length == 2) {
                     String name = keyValue[0];
                     String value = keyValue[1];
+                    //System.out.println(name + "=" + value);
+
                     boolean handled = false;
-
                     for (ArgumentHandler handler : argumentHandlers) {
-                        try {
-                            handler.handle(name, value, this);
-                            handled = true;
+                        handled = handler.handle(name, value, this);
+                        if (handled)
                             break;
-                        } catch (IllegalArgumentException e) {
-                            // Continue to the next handler
-                        }
                     }
-
                     if (!handled) {
                         System.out.println("Invalid argument: " + name);
                     }
-                } else {
-                    System.out.println("Invalid argument: " + arg);
                 }
             }
         }
@@ -46,6 +55,7 @@ public class Parameters {
 
     private void registerHandlers() {
         argumentHandlers.add(new BaseAttributeHandler());
+        argumentHandlers.add(new EpilepsyHandler());
         // Add more handlers as needed
     }
 }

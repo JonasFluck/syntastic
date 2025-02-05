@@ -1,136 +1,114 @@
 package org.example.modules.extensionModules.Epilepsy;
 
-import org.example.SnpLoader;
 import org.example.concepts.*;
 import org.example.concepts.Module;
-import org.example.helper.DrugLoader;
 import org.example.helper.TraitFileReader;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class ModuleEpilepsy extends Module{
-    private Trait epilepsyTrait;
-    private Module moduleDrugsEpilepsy;
-    private List<Snp> snps;
+public class ModuleEpilepsy extends Module {
 
-    public ModuleEpilepsy(List<Snp> snps){
-        System.out.println("Loading trait file...");
-        epilepsyTrait = TraitFileReader.readTraitFromFile("traitFiles/Epilepsy.txt");
-        if (epilepsyTrait == null) {
-            System.err.println("Failed to load epilepsy trait data");
-        }
-        System.out.println("Loading trait file done");
-        this.snps = snps;
-        this.moduleDrugsEpilepsy = new ModuleDrugsEpilepsy(loadDrugSnpMap(), 5);
+    private final Trait epilepsyTrait;
+    private final Module moduleDrugsEpilepsy;
 
+    // Private constructor to enforce builder usage
+    private ModuleEpilepsy(Builder builder) {
+        super(builder); // Pass the builder to the parent class constructor
+        this.epilepsyTrait = builder.epilepsyTrait;
+        this.moduleDrugsEpilepsy = builder.moduleDrugsEpilepsy;
     }
 
-    private List<String> getDistinctFamilies(List<Drug> drugs) {
-        Set<String> familySet = new HashSet<>();
+    // Builder class extending Module.ModuleBuilder
+    public static class Builder extends Module.ModuleBuilder<ModuleEpilepsy, Builder> {
 
-        // Add all families from all drugs to the set
-        for (Drug drug : drugs) {
-            familySet.addAll(Arrays.asList(drug.getFamily()));
-        }
+        private Trait epilepsyTrait;
+        private ModuleDrugsEpilepsy moduleDrugsEpilepsy;
 
-        // Convert the set to a list (if a list is required)
-        return new ArrayList<>(familySet);
-    }
-
-    private Map<Drug, List<Snp>> loadDrugSnpMap(){
-
-        //First we assign random snps to each drug type
-        Map<String, List<Snp>> drugTypesWithSnp = new HashMap<>();
-        for(String drugType: getDistinctFamilies(getDrugs()))
-            drugTypesWithSnp.put(drugType, new ArrayList<>());
-        Random random = new Random();
-        for(String key : drugTypesWithSnp.keySet()){
-            int numberOfSnps = 100;
-            List<Snp> shuffledList = new ArrayList<>(snps);
-            Collections.shuffle(shuffledList, random);
-            List<Snp> randomSnps = shuffledList.subList(0, Math.min(numberOfSnps, shuffledList.size()));
-            drugTypesWithSnp.put(key, randomSnps);
-        }
-        //Now we assign the snps to the drugs according to the drug type
-        Map<Drug, List<Snp>> drugSnpMap = new HashMap<>();
-        for(Drug drug : getDrugs()){
-            List<Snp> relevantSnps = new ArrayList<>();
-            for(String family : drug.getFamily()){
-                List<Snp> snps = drugTypesWithSnp.get(family);
-                relevantSnps.addAll(drawPercentageOfSnps(snps, 80));
-                drugSnpMap.put(drug, relevantSnps);
+        // Builder setter methods
+        public Builder setEpilepsyTrait(String traitFilePath) {
+            System.out.println("Loading trait file...");
+            this.epilepsyTrait = TraitFileReader.readTraitFromFile(traitFilePath);
+            if (this.epilepsyTrait == null) {
+                throw new IllegalStateException("Failed to load epilepsy trait data from " + traitFilePath);
             }
-        }
-        return drugSnpMap;
-    }
-
-    private List<Snp> drawPercentageOfSnps(List<Snp> snps, int percentage) {
-        if (snps.isEmpty()) {
-            return Collections.emptyList();
+            System.out.println("Loading trait file done");
+            return this;
         }
 
-        // Shuffle the SNP list to randomize selection
-        List<Snp> shuffledSnps = new ArrayList<>(snps);
-        Collections.shuffle(shuffledSnps);
+        public Builder setModuleDrugsEpilepsy(ModuleDrugsEpilepsy moduleDrugsEpilepsy) {
+            this.moduleDrugsEpilepsy = moduleDrugsEpilepsy;
+            return this;
+        }
 
-        // Calculate the number of SNPs to draw
-        int drawCount = (int) Math.ceil((percentage / 100.0) * snps.size());
+        @Override
+        protected Builder self() {
+            return this;
+        }
 
-        // Return the first 'drawCount' SNPs
-        return shuffledSnps.subList(0, Math.min(drawCount, shuffledSnps.size()));
+        @Override
+        public ModuleEpilepsy build() {
+            if (epilepsyTrait == null || moduleDrugsEpilepsy == null) {
+                throw new IllegalStateException("All properties must be set before building ModuleEpilepsy");
+            }
+            return new ModuleEpilepsy(this);
+        }
     }
 
-    private List<Drug> getDrugs() {
-        return DrugLoader.loadDrugs("drugs.json");
-    }
-
+    // Implementation of processData method
     @Override
     public Patient processData(Patient patient) {
-        // Preload Variants into a Map for quick lookup
+        // Preload Variants for quick lookup
         Map<String, Variant> variantMap = epilepsyTrait.getVariants();
 
         double epilepsyRisk = 0;
-        int count = 0;
-        int total = patient.getSnps().size();
+        int processedCount = 0;
+        int totalSnpCount = patient.getSnps().size();
 
-        // Iterate over SNPs and directly fetch corresponding Variant
+        // Iterate through the patient's SNPs and calculate epilepsy risk
         for (Map.Entry<String, Snp> snpEntry : patient.getSnps().entrySet()) {
             Variant variant = variantMap.get(snpEntry.getKey());
             if (variant != null) {
-                epilepsyRisk += getEpilepsyRisk(snpEntry.getValue(), variant);
+                epilepsyRisk += calculateEpilepsyRisk(snpEntry.getValue(), variant);
             }
-            count++;
-            System.out.println("Processed " + count + " out of " + total + " snps");
+            processedCount++;
+            //System.out.println("Processed " + processedCount + " out of " + totalSnpCount + " SNPs");
         }
 
-        // Store the result in the patient's attributes
+        // Store the epilepsy risk in the patient's attributes
         patient.getAttributes().put("epilepsy", epilepsyRisk);
-        // Add medication data
+
+        // Add drug-related data using the ModuleDrugsEpilepsy module
         moduleDrugsEpilepsy.processData(patient);
+
         return patient;
     }
 
+    private double calculateEpilepsyRisk(Snp snp, Variant variant) {
+        char refAllele = snp.getRef();
+        String genotype = snp.getExpression();
+        char altAllele = snp.getAlt();
 
-    public double getEpilepsyRisk(Snp snp, Variant variant){
-        char allele = snp.getRef();
-        String expression = snp.getExpression();
-        char alternative = snp.getAlt();
-        switch (expression){
+        switch (genotype) {
             case "0/0":
-                //Two times major allele
-                if(variant.getEffectAllele().equals(String.valueOf(allele))){
+                // Two copies of the reference allele
+                if (variant.getEffectAllele().equals(String.valueOf(refAllele))) {
                     return variant.getEffectWeight() * 2;
                 }
                 break;
-            case "0/1", "1/0":
+
+            case "0/1":
+            case "1/0":
+                // One reference allele and one alternative allele
                 return variant.getEffectWeight();
+
             case "1/1":
-                if(variant.getEffectAllele().equals(String.valueOf(alternative))){
+                // Two copies of the alternative allele
+                if (variant.getEffectAllele().equals(String.valueOf(altAllele))) {
                     return variant.getEffectWeight() * 2;
                 }
                 break;
         }
+
         return 0;
     }
 }
