@@ -50,10 +50,10 @@ public class Main {
                     .sorted() // Sort alphabetically
                     .forEach(orderedAttributes::add); // Add to ordered set
 
-            // Write CSV header
-            writer.write("patient_id,snp_id,chromosome,position,reference,alternative,expression");
+            // Write CSV header using ';' as the delimiter
+            writer.write("patient_id;snp_id;chromosome;position;reference;alternative;expression");
             for (String key : orderedAttributes) {
-                writer.write("," + key);
+                writer.write(";" + key);
             }
             writer.write("\n");
 
@@ -65,7 +65,7 @@ public class Main {
 
                 // Iterate through SNPs (long format)
                 for (Snp snp : snps.values()) {
-                    writer.write(String.format("%s,%s,%d,%d,%s,%s,%s",
+                    writer.write(String.format("%s;%s;%d;%d;%s;%s;%s",
                             patientId,
                             snp.getRsId(),
                             snp.getChromosome(),
@@ -77,7 +77,7 @@ public class Main {
 
                     // Write attribute values in the correct order
                     for (String key : orderedAttributes) {
-                        writer.write("," + attributes.getOrDefault(key, ""));
+                        writer.write(";" + attributes.getOrDefault(key, ""));
                     }
                     writer.write("\n");
                 }
@@ -88,11 +88,10 @@ public class Main {
         }
     }
 
-
     private static void exportPatientsDrugEventsToCsv(List<Patient> patients, String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
-            // Write CSV header
-            writer.write("patient_id,drug_name,response,mutation_rate,prescription_count,drug_family\n");
+            // Write CSV header using ';' as the delimiter
+            writer.write("patient_id;drug_name;response;mutation_rate;prescription_count;drug_family\n");
 
             for (Patient patient : patients) {
                 String patientId = patient.getId();
@@ -104,11 +103,15 @@ public class Main {
                         if (obj instanceof DrugEvent) {
                             DrugEvent event = (DrugEvent) obj;
                             Drug drug = event.getDrug(); // Assuming Drug object exists in DrugEvent
-                            writer.write(String.format("%s,%s,%b,%.4f,%d,%s\n",
+
+                            // Convert mutation rate to dot-separated format
+                            String formattedMutationRate = String.format(Locale.US, "%.4f", event.getSnpDrugMutationRate());
+
+                            writer.write(String.format("%s;%s;%b;%s;%d;%s\n",
                                     patientId,
                                     drug.getName(),
                                     event.isResponse(),
-                                    event.getSnpDrugMutationRate(),
+                                    formattedMutationRate,
                                     drug.getPrescriptionFrequency(),
                                     String.join(" | ", drug.getFamily()) // Joining drug families with "|"
                             ));
