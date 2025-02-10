@@ -1,9 +1,14 @@
 package org.example.modules.extensionModules;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.concepts.*;
 import org.example.concepts.Module;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,6 +99,13 @@ public abstract class ModuleDrugs extends Module {
 
         public B setSnps(List<Snp> snps) {
             this.snps = snps;
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+            try (FileWriter writer = new FileWriter("test.json")) {
+                writer.write(gson.toJson(snps));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return self();
         }
 

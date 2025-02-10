@@ -3,6 +3,8 @@ package org.example;
 import java.io.*;
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.concepts.Snp;
 
 public class SnpLoader {
@@ -51,6 +53,13 @@ public class SnpLoader {
             System.err.println("Error reading CSV file: " + csvFilePath);
         }
 
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter("test_patients.json")) {
+            writer.write(gson.toJson(patientSnps));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return patientSnps;
     }
 }

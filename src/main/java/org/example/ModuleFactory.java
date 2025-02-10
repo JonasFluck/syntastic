@@ -2,19 +2,32 @@ package org.example;
 
 import org.example.concepts.Module;
 import org.example.concepts.Parameters;
+import org.example.concepts.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleDrugsEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ModuleFactory {
     private final Parameters parameters;
     public ModuleFactory(Parameters parameters) {
         this.parameters = parameters;
     }
+
+    private List<Snp> generateDistinctSnpList(Map<String, Map<String, Snp>> patientData){
+        List<Snp> snps = patientData.values().stream()
+                .flatMap(innerMap -> innerMap.values().stream())
+                .distinct()
+                .toList();
+        return snps;
+    }
+
     public List<Module> generateModules(List<Class<? extends Module>> moduleClasses){
         List<Module> modules = new ArrayList<>();
         for(Class<? extends Module> moduleClass : moduleClasses){
@@ -32,10 +45,7 @@ public class ModuleFactory {
                         .setModuleDrugsEpilepsy(
                                 new ModuleDrugsEpilepsy.Builder()
                                         .setMaxDrugs(parameters.maxDrugs)
-                                        .setSnps(parameters.patientData.values().stream() // Stream<Map<String, Snp>>
-                                                .flatMap(innerMap -> innerMap.values().stream()) // Stream<Snp>
-                                                .distinct() // Ensure uniqueness
-                                                .toList())
+                                        .setSnps(generateDistinctSnpList(parameters.patientData).stream().distinct().toList()) // Convert back to a List
                                         .setBaseDrugEffectiveness(parameters.baseDrugEffectiveness)
                                         .setNegativePriorDrugEvent(parameters.negativePriorDrugEvent)
                                         .setPositivePriorDrugEvent(parameters.positivePriorDrugEvent)

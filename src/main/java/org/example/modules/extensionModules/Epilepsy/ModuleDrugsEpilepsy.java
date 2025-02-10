@@ -1,9 +1,13 @@
 package org.example.modules.extensionModules.Epilepsy;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.example.concepts.*;
 import org.example.helper.DrugLoader;
 import org.example.modules.extensionModules.ModuleDrugs;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -31,6 +35,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         // Initialize drugsInFrequency with validated data
         this.drugSnpMap = createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType);
         this.drugsInFrequency = initializeDrugsInFrequency(drugSnpMap);
+        ExportDrugSnpMap(drugSnpMap,"drugSnpMap_Epilepsy.json");
 
     }
 
@@ -66,8 +71,22 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         Map<Drug, List<Snp>> drugSnpMap = new HashMap<>();
         for (Drug drug : getDrugs()) {
             List<Snp> relevantSnps = new ArrayList<>();
-            for (String family : drug.getFamily()) {
-                relevantSnps.addAll(drawPercentageOfSnps(drugTypeSnpMap.get(family), percentageOfSnpsForDrugPerDrugType));
+            if(drug.getFamily() == null || drug.getFamily().length == 0) {
+                List<Snp> allSnps = new ArrayList<>(snps);
+                Collections.shuffle(allSnps);
+
+                // Take a distinct set of random SNPs up to the 'variable' cap
+                relevantSnps = allSnps.stream()
+                        .distinct()  // Ensure distinct SNPs
+                        .limit(percentageOfSnpsForDrugPerDrugType)  // Limit to the variable size
+                        .collect(Collectors.toList()); // Collect into the list
+            }
+            else {
+                int numberOfFamilies = drug.getFamily().length;
+                for (String family : drug.getFamily()) {
+                    relevantSnps.addAll(drawPercentageOfSnps(drugTypeSnpMap.get(family), percentageOfSnpsForDrugPerDrugType/numberOfFamilies));
+
+                }
             }
             drugSnpMap.put(drug, relevantSnps);
         }
@@ -172,6 +191,22 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
                 .count();
 
         return (double) mutatedCount / relevantSnps.size();
+    }
+
+    private void ExportDrugSnpMap(Map<Drug, List<Snp>> drugSnpMap, String filename) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        // Convert Drug keys to a JSON-compatible format (String)
+        Map<String, List<Snp>> jsonCompatibleMap = new HashMap<>();
+        for (Map.Entry<Drug, List<Snp>> entry : drugSnpMap.entrySet()) {
+            jsonCompatibleMap.put(entry.getKey().getName(), entry.getValue());
+        }
+        try (FileWriter writer = new FileWriter(filename)) {
+            gson.toJson(jsonCompatibleMap, writer);
+            System.out.println("Exported JSON successfully to: " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Builder implementation for ModuleDrugsEpilepsy
