@@ -48,6 +48,8 @@ public class ModuleFactory {
                 if(parameters.positivePriorDrugEvent != null) moduleDrugsEpilepsyBuilder.setPositivePriorDrugEvent(parameters.positivePriorDrugEvent);
                 if(parameters.snpsPerDrugType != null) moduleDrugsEpilepsyBuilder.setSnpsPerDrugType(parameters.snpsPerDrugType);
                 if(parameters.percentageOfSnpsForDrugPerDrugType != null) moduleDrugsEpilepsyBuilder.setPercentageOfSnpsForDrugPerDrugType(parameters.percentageOfSnpsForDrugPerDrugType);
+                if(parameters.positiveResponseAnotherDrug != null) moduleDrugsEpilepsyBuilder.setPositiveResponseAnotherDrug(parameters.positiveResponseAnotherDrug);
+                if(parameters.negativeResponseAnotherDrug != null) moduleDrugsEpilepsyBuilder.setNegativeResponseAnotherDrug(parameters.negativeResponseAnotherDrug);
 
                 moduleEpilepsyBuilder.setModuleDrugsEpilepsy(moduleDrugsEpilepsyBuilder.build());
                 modules.add(moduleEpilepsyBuilder.build());

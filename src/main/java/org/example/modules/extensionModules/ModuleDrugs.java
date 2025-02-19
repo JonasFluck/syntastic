@@ -1,15 +1,11 @@
 package org.example.modules.extensionModules;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.example.concepts.Module;
 import org.example.concepts.attributes.Drug;
 import org.example.concepts.attributes.DrugEvent;
 import org.example.concepts.attributes.Patient;
 import org.example.concepts.attributes.Snp;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +16,20 @@ public abstract class ModuleDrugs extends Module {
     private final List<Snp> snps;
     private final int snpsPerDrugType;
     private final int percentageOfSnpsForDrugPerDrugType;
+    private final double positiveResponseAnotherDrug;
+    private final double negativeResponseAnotherDrug;
 
     // Protected constructor to enforce builder usage
     protected ModuleDrugs(Builder<?,?> builder) {
         super(builder); // Correctly passes the builder to the Module constructor
-
         this.snps = builder.snps;
+
+        //Instantiate variables with default values if not provided with parameters
         this.maxDrugs = builder.maxDrugs;
         this.snpsPerDrugType = builder.snpsPerDrugType;
         this.percentageOfSnpsForDrugPerDrugType = builder.percentageOfSnpsForDrugPerDrugType;
+        this.positiveResponseAnotherDrug = builder.positiveResponseAnotherDrug;
+        this.negativeResponseAnotherDrug = builder.negativeResponseAnotherDrug;
     }
 
     // Get drug events for a patient
@@ -47,7 +48,8 @@ public abstract class ModuleDrugs extends Module {
             return assignDrug(patient, drugEvents, drugEventCount + 1, drugSnpMap);
         } else {
             DrugEvent lastDrugEvent = drugEvents.get(drugEvents.size() - 1);
-            double chance = lastDrugEvent.isResponse() ? 0.05 : 0.8;
+            //chance of assigning more drugs based on the last drug event
+            double chance = lastDrugEvent.isResponse() ? positiveResponseAnotherDrug : negativeResponseAnotherDrug;
 
             if (decideIfMoreDrugs(chance)) {
                 if (drugEvents.size() < maxDrugs) {
@@ -80,8 +82,6 @@ public abstract class ModuleDrugs extends Module {
     // Override processData method
     @Override
     public Patient processData(Patient patient) {
-        System.out.println("Processing patient data with ModuleDrugs");
-        System.out.println("Size of snps: " + snps.size()); // Hier ist snps null aber warum ?
         patient.getAttributes().put("drugEvents", getDrugEvents(patient, createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType)));
         return patient;
     }
@@ -89,10 +89,12 @@ public abstract class ModuleDrugs extends Module {
     public static abstract class Builder<T extends ModuleDrugs, B extends Builder<T, B>>
             extends Module.ModuleBuilder<T, B> {
 
-        public int maxDrugs;
+        public Integer maxDrugs;
         public List<Snp> snps;
-        public int snpsPerDrugType;
-        public int percentageOfSnpsForDrugPerDrugType;
+        public Integer snpsPerDrugType;
+        public Integer percentageOfSnpsForDrugPerDrugType;
+        public Double positiveResponseAnotherDrug;
+        public Double negativeResponseAnotherDrug;
 
         public B setMaxDrugs(int maxDrugs) {
             this.maxDrugs = maxDrugs;
@@ -101,13 +103,16 @@ public abstract class ModuleDrugs extends Module {
 
         public B setSnps(List<Snp> snps) {
             this.snps = snps;
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            return self();
+        }
 
-            try (FileWriter writer = new FileWriter("test.json")) {
-                writer.write(gson.toJson(snps));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        public B setPositiveResponseAnotherDrug(double positiveResponseAnotherDrug) {
+            this.positiveResponseAnotherDrug = positiveResponseAnotherDrug;
+            return self();
+        }
+
+        public B setNegativeResponseAnotherDrug(double negativeResponseAnotherDrug) {
+            this.negativeResponseAnotherDrug = negativeResponseAnotherDrug;
             return self();
         }
 

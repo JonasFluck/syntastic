@@ -46,19 +46,9 @@ public class SnpLoader {
                 // Add to patient SNP map
                 patientSnps.computeIfAbsent(patientId, k -> new HashMap<>()).put(snpId, snp);
             }
-
-            System.out.println("CSV successfully loaded into memory.");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error reading CSV file: " + csvFilePath);
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try (FileWriter writer = new FileWriter("test_patients.json")) {
-            writer.write(gson.toJson(patientSnps));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return patientSnps;
     }

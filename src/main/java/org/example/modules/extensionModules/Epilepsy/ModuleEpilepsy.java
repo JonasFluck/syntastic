@@ -29,12 +29,10 @@ public class ModuleEpilepsy extends Module {
 
         // Builder setter methods
         public Builder setEpilepsyTrait(String traitFilePath) {
-            System.out.println("Loading trait file...");
             this.epilepsyTrait = TraitFileReader.readTraitFromFile(traitFilePath);
             if (this.epilepsyTrait == null) {
                 throw new IllegalStateException("Failed to load epilepsy trait data from " + traitFilePath);
             }
-            System.out.println("Loading trait file done");
             return this;
         }
 
@@ -64,8 +62,6 @@ public class ModuleEpilepsy extends Module {
         Map<String, Variant> variantMap = epilepsyTrait.getVariants();
 
         double epilepsyRisk = 0;
-        int processedCount = 0;
-        int totalSnpCount = patient.getSnps().size();
 
         // Iterate through the patient's SNPs and calculate epilepsy risk
         for (Map.Entry<String, Snp> snpEntry : patient.getSnps().entrySet()) {
@@ -73,14 +69,9 @@ public class ModuleEpilepsy extends Module {
             if (variant != null) {
                 epilepsyRisk += calculateEpilepsyRisk(snpEntry.getValue(), variant);
             }
-            processedCount++;
-            //System.out.println("Processed " + processedCount + " out of " + totalSnpCount + " SNPs");
         }
 
-        // Store the epilepsy risk in the patient's attributes
-        patient.getAttributes().put("epilepsy", epilepsyRisk);
-
-        // Add drug-related data using the ModuleDrugsEpilepsy module
+        patient.getAttributes().put("epilepsyRisk", epilepsyRisk);
         moduleDrugsEpilepsy.processData(patient);
 
         return patient;

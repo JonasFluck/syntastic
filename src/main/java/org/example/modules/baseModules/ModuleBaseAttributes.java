@@ -23,7 +23,6 @@ public class ModuleBaseAttributes extends Module {
     private final List<String[]> csvData;
     private final int totalPopulation;
 
-    // Private constructor to enforce builder usage
     private ModuleBaseAttributes(Builder builder) {
         super(builder); // Pass the builder to the parent class constructor
         this.minAge = builder.minAge != null ? builder.minAge : -1;
@@ -33,7 +32,7 @@ public class ModuleBaseAttributes extends Module {
 
         try {
             this.csvData = CsvLoader.readCSVFromResources("config/euro_pop.csv");
-            csvData.remove(0); // Remove the header row
+            csvData.removeFirst(); // Remove the header row
             countries = parseCsvData(csvData);
             if(!inputCountries.isEmpty())
                 countries.removeIf(country -> !inputCountries.contains(country.getName()));
@@ -42,47 +41,6 @@ public class ModuleBaseAttributes extends Module {
             throw new RuntimeException("Failed to load CSV data", e);
         }
     }
-
-    // Builder class extending Module.ModuleBuilder
-    public static class Builder extends Module.ModuleBuilder<ModuleBaseAttributes, Builder> {
-
-        private Integer minAge; // Default value
-        private Integer maxAge; // Default value
-        private List<String> countries = new ArrayList<>();
-        private List<Gender> genders = new ArrayList<>();
-
-        // Builder setter methods
-        public Builder setMinAge(int minAge) {
-            this.minAge = minAge;
-            return this;
-        }
-
-        public Builder setMaxAge(int maxAge) {
-            this.maxAge = maxAge;
-            return this;
-        }
-
-        public Builder setCountries(List<String> countries) {
-            this.countries = countries;
-            return this;
-        }
-
-        public Builder setGenders(List<Gender> genders) {
-            this.genders = genders;
-            return this;
-        }
-
-        @Override
-        protected Builder self() {
-            return this;
-        }
-
-        @Override
-        public ModuleBaseAttributes build() {
-            return new ModuleBaseAttributes(this);
-        }
-    }
-
     // Parsing CSV data
     private List<Country> parseCsvData(List<String[]> input) {
         List<Country> countries = new ArrayList<>();
@@ -219,5 +177,44 @@ public class ModuleBaseAttributes extends Module {
         patient.getAttributes().put("age", age);
         patient.getAttributes().put("gender", gender);
         return patient;
+    }
+
+    // Builder class extending Module.ModuleBuilder
+    public static class Builder extends Module.ModuleBuilder<ModuleBaseAttributes, Builder> {
+
+        private Integer minAge;
+        private Integer maxAge;
+        private List<String> countries = new ArrayList<>();
+        private List<Gender> genders = new ArrayList<>();
+
+        public Builder setMinAge(int minAge) {
+            this.minAge = minAge;
+            return this;
+        }
+
+        public Builder setMaxAge(int maxAge) {
+            this.maxAge = maxAge;
+            return this;
+        }
+
+        public Builder setCountries(List<String> countries) {
+            this.countries = countries;
+            return this;
+        }
+
+        public Builder setGenders(List<Gender> genders) {
+            this.genders = genders;
+            return this;
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+
+        @Override
+        public ModuleBaseAttributes build() {
+            return new ModuleBaseAttributes(this);
+        }
     }
 }
