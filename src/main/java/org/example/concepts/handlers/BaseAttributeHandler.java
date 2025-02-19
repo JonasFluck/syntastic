@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.example.concepts.*;
+import org.example.concepts.attributes.Gender;
 
 public class BaseAttributeHandler implements ArgumentHandler {
 

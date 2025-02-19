@@ -1,5 +1,7 @@
 package org.example.concepts;
 
+import org.example.concepts.attributes.Patient;
+
 public abstract class Module extends AbstractEntity {
 
     protected Module(AbstractBuilder<?, ?> builder) {

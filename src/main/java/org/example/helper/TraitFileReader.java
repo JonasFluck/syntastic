@@ -1,13 +1,11 @@
 package org.example.helper;
 
-import org.example.concepts.Trait;
-import org.example.concepts.Variant;
+import org.example.concepts.attributes.Trait;
+import org.example.concepts.attributes.Variant;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 

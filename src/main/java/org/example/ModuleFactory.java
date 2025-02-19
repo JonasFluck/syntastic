@@ -2,17 +2,15 @@ package org.example;
 
 import org.example.concepts.Module;
 import org.example.concepts.Parameters;
-import org.example.concepts.Snp;
+import org.example.concepts.attributes.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleDrugsEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ModuleFactory {
     private final Parameters parameters;
@@ -21,40 +19,38 @@ public class ModuleFactory {
     }
 
     private List<Snp> generateDistinctSnpList(Map<String, Map<String, Snp>> patientData){
-        List<Snp> snps = patientData.values().stream()
+        return patientData.values().stream()
                 .flatMap(innerMap -> innerMap.values().stream())
                 .distinct()
                 .toList();
-        return snps;
     }
 
     public List<Module> generateModules(List<Class<? extends Module>> moduleClasses){
         List<Module> modules = new ArrayList<>();
         for(Class<? extends Module> moduleClass : moduleClasses){
             if (moduleClass == ModuleBaseAttributes.class){
-                modules.add(new ModuleBaseAttributes.Builder()
-                        .setMinAge(parameters.minAge)
-                        .setMaxAge(parameters.maxAge)
-                        .setGenders(parameters.gender)
-                        .setCountries(parameters.countryList)
-                        .build());
+                ModuleBaseAttributes.Builder moduleAttributes = new ModuleBaseAttributes.Builder();
+                if(parameters.minAge != null) moduleAttributes.setMinAge(parameters.minAge);
+                if(parameters.maxAge != null) moduleAttributes.setMaxAge(parameters.maxAge);
+                moduleAttributes.setCountries(parameters.countryList);
+                moduleAttributes.setGenders(parameters.gender);
+                modules.add(moduleAttributes.build());
             }
             if(moduleClass == ModuleEpilepsy.class){
-                modules.add(new ModuleEpilepsy.Builder()
-                        .setEpilepsyTrait("config/traitFiles/Epilepsy.txt")
-                        .setModuleDrugsEpilepsy(
-                                new ModuleDrugsEpilepsy.Builder()
-                                        .setMaxDrugs(parameters.maxDrugs)
-                                        .setSnps(generateDistinctSnpList(parameters.patientData).stream().distinct().toList()) // Convert back to a List
-                                        .setBaseDrugEffectiveness(parameters.baseDrugEffectiveness)
-                                        .setNegativePriorDrugEvent(parameters.negativePriorDrugEvent)
-                                        .setPositivePriorDrugEvent(parameters.positivePriorDrugEvent)
-                                        .setSnpsPerDrugType(parameters.snpsPerDrugType)
-                                        .setPercentageOfSnpsForDrugPerDrugType(parameters.percentageOfSnpsForDrugPerDrugType)
-                                        .build()
-                        )
-                        .build()
-                );
+                ModuleEpilepsy.Builder moduleEpilepsyBuilder = new ModuleEpilepsy.Builder();
+                moduleEpilepsyBuilder.setEpilepsyTrait("config/traitFiles/Epilepsy.txt");
+
+                ModuleDrugsEpilepsy.Builder moduleDrugsEpilepsyBuilder = new ModuleDrugsEpilepsy.Builder();
+                moduleDrugsEpilepsyBuilder.setSnps(generateDistinctSnpList(parameters.patientData));
+                if(parameters.maxDrugs != null) moduleDrugsEpilepsyBuilder.setMaxDrugs(parameters.maxDrugs);
+                if(parameters.baseDrugEffectiveness != null) moduleDrugsEpilepsyBuilder.setBaseDrugEffectiveness(parameters.baseDrugEffectiveness);
+                if(parameters.negativePriorDrugEvent != null) moduleDrugsEpilepsyBuilder.setNegativePriorDrugEvent(parameters.negativePriorDrugEvent);
+                if(parameters.positivePriorDrugEvent != null) moduleDrugsEpilepsyBuilder.setPositivePriorDrugEvent(parameters.positivePriorDrugEvent);
+                if(parameters.snpsPerDrugType != null) moduleDrugsEpilepsyBuilder.setSnpsPerDrugType(parameters.snpsPerDrugType);
+                if(parameters.percentageOfSnpsForDrugPerDrugType != null) moduleDrugsEpilepsyBuilder.setPercentageOfSnpsForDrugPerDrugType(parameters.percentageOfSnpsForDrugPerDrugType);
+
+                moduleEpilepsyBuilder.setModuleDrugsEpilepsy(moduleDrugsEpilepsyBuilder.build());
+                modules.add(moduleEpilepsyBuilder.build());
             }
             if(moduleClass == ModuleAttributes.class){
                 modules.add(new ModuleAttributes.Builder().setOddsRatios(ModuleAttributes.loadAttributes("src/main/resources/config/epilepsy_odds_ratios.json")).build());

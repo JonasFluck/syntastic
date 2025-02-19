@@ -1,8 +1,8 @@
 package org.example;
 
 import org.example.concepts.Module;
-import org.example.concepts.Patient;
-import org.example.concepts.Snp;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;

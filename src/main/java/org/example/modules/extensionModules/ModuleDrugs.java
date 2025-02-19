@@ -2,13 +2,15 @@ package org.example.modules.extensionModules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.concepts.*;
 import org.example.concepts.Module;
+import org.example.concepts.attributes.Drug;
+import org.example.concepts.attributes.DrugEvent;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

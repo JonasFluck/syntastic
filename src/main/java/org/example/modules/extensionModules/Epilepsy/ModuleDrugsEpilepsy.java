@@ -2,7 +2,10 @@ package org.example.modules.extensionModules.Epilepsy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.concepts.*;
+import org.example.concepts.attributes.Drug;
+import org.example.concepts.attributes.DrugEvent;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
 import org.example.helper.DrugLoader;
 import org.example.modules.extensionModules.ModuleDrugs;
 

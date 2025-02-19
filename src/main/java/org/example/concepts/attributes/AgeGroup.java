@@ -1,4 +1,4 @@
-package org.example.concepts;
+package org.example.concepts.attributes;
 
 public class AgeGroup {
     public int getPopulationMale() {

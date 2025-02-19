@@ -1,19 +1,23 @@
 package org.example.modules.baseModules;
 
 import com.opencsv.exceptions.CsvValidationException;
-import org.example.concepts.*;
 import org.example.concepts.Module;
+import org.example.concepts.attributes.AgeGroup;
+import org.example.concepts.attributes.Country;
+import org.example.concepts.attributes.Gender;
+import org.example.concepts.attributes.Patient;
 import org.example.helper.CsvLoader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class ModuleBaseAttributes extends Module {
 
-    private int minAge;
-    private int maxAge;
+    private final int minAge;
+    private final int maxAge;
     private final List<Gender> genders;
     private final List<Country> countries;
     private final List<String[]> csvData;
@@ -22,17 +26,16 @@ public class ModuleBaseAttributes extends Module {
     // Private constructor to enforce builder usage
     private ModuleBaseAttributes(Builder builder) {
         super(builder); // Pass the builder to the parent class constructor
-        this.minAge = builder.minAge;
-        this.maxAge = builder.maxAge;
-        this.genders = builder.genders;
-
+        this.minAge = builder.minAge != null ? builder.minAge : -1;
+        this.maxAge = builder.maxAge != null ? builder.maxAge : -1;
+        this.genders = !builder.genders.isEmpty() ? builder.genders : Arrays.asList(Gender.Female, Gender.Male);
         List<String> inputCountries = builder.countries;
 
         try {
             this.csvData = CsvLoader.readCSVFromResources("config/euro_pop.csv");
             csvData.remove(0); // Remove the header row
             countries = parseCsvData(csvData);
-            if(inputCountries != null)
+            if(!inputCountries.isEmpty())
                 countries.removeIf(country -> !inputCountries.contains(country.getName()));
             totalPopulation = countries.stream().mapToInt(Country::getPopulation).sum();
         } catch (IOException | CsvValidationException e) {
@@ -43,8 +46,8 @@ public class ModuleBaseAttributes extends Module {
     // Builder class extending Module.ModuleBuilder
     public static class Builder extends Module.ModuleBuilder<ModuleBaseAttributes, Builder> {
 
-        private int minAge; // Default value
-        private int maxAge; // Default value
+        private Integer minAge; // Default value
+        private Integer maxAge; // Default value
         private List<String> countries = new ArrayList<>();
         private List<Gender> genders = new ArrayList<>();
 

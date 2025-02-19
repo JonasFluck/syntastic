@@ -5,7 +5,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.concepts.Snp;
+import org.example.concepts.attributes.Snp;
 
 public class SnpLoader {
     public static Map<String, Map<String, Snp>> loadSnps(String csvFilePath) {

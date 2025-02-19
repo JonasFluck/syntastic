@@ -2,7 +2,7 @@ package org.example.helper;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.example.concepts.Drug;
+import org.example.concepts.attributes.Drug;
 
 import java.io.IOException;
 import java.io.InputStream;

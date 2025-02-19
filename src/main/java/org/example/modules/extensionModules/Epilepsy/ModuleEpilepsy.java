@@ -1,7 +1,10 @@
 package org.example.modules.extensionModules.Epilepsy;
 
-import org.example.concepts.*;
 import org.example.concepts.Module;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
+import org.example.concepts.attributes.Trait;
+import org.example.concepts.attributes.Variant;
 import org.example.helper.TraitFileReader;
 
 import java.util.*;
