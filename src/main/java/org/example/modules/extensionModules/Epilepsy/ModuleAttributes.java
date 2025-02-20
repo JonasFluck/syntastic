@@ -3,7 +3,7 @@ package org.example.modules.extensionModules.Epilepsy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.example.concepts.Module;
-import org.example.concepts.Patient;
+import org.example.concepts.attributes.Patient;
 
 import java.io.FileReader;
 import java.io.IOException;

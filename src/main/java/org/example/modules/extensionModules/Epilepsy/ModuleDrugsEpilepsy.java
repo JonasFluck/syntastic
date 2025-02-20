@@ -2,7 +2,10 @@ package org.example.modules.extensionModules.Epilepsy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.concepts.*;
+import org.example.concepts.attributes.Drug;
+import org.example.concepts.attributes.DrugEvent;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
 import org.example.helper.DrugLoader;
 import org.example.modules.extensionModules.ModuleDrugs;
 
@@ -36,7 +39,6 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         this.drugSnpMap = createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType);
         this.drugsInFrequency = initializeDrugsInFrequency(drugSnpMap);
         ExportDrugSnpMap(drugSnpMap,"drugSnpMap_Epilepsy.json");
-
     }
 
     private List<Drug> initializeDrugsInFrequency(Map<Drug, List<Snp>> drugSnpMap) {
@@ -211,9 +213,9 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
 
     // Builder implementation for ModuleDrugsEpilepsy
     public static class Builder extends ModuleDrugs.Builder<ModuleDrugsEpilepsy, Builder> {
-        private double baseDrugEffectiveness;
-        private double negativePriorDrugEvent;
-        private double positivePriorDrugEvent;
+        private Double baseDrugEffectiveness;
+        private Double negativePriorDrugEvent;
+        private Double positivePriorDrugEvent;
 
         @Override
         public ModuleDrugsEpilepsy build() {
@@ -237,6 +239,14 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
 
         @Override
         protected Builder self() {
+            this.maxDrugs = maxDrugs != null ? maxDrugs : 5;
+            this.snpsPerDrugType = snpsPerDrugType != null ? snpsPerDrugType : 100;
+            this.percentageOfSnpsForDrugPerDrugType =percentageOfSnpsForDrugPerDrugType != null ? percentageOfSnpsForDrugPerDrugType : 80;
+            this.positiveResponseAnotherDrug = positiveResponseAnotherDrug != null ? positiveResponseAnotherDrug : 0.05;
+            this.negativeResponseAnotherDrug = negativeResponseAnotherDrug != null ? negativeResponseAnotherDrug : 0.8;
+            this.baseDrugEffectiveness = baseDrugEffectiveness != null ? baseDrugEffectiveness : 0.5;
+            this.negativePriorDrugEvent = negativePriorDrugEvent != null ? negativePriorDrugEvent : -0.1;
+            this.positivePriorDrugEvent = positivePriorDrugEvent != null ? positivePriorDrugEvent : 0.1;
             return this;
         }
     }

@@ -5,7 +5,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.example.concepts.Snp;
+import org.example.concepts.attributes.Snp;
 
 public class SnpLoader {
     public static Map<String, Map<String, Snp>> loadSnps(String csvFilePath) {
@@ -46,19 +46,9 @@ public class SnpLoader {
                 // Add to patient SNP map
                 patientSnps.computeIfAbsent(patientId, k -> new HashMap<>()).put(snpId, snp);
             }
-
-            System.out.println("CSV successfully loaded into memory.");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Error reading CSV file: " + csvFilePath);
-        }
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try (FileWriter writer = new FileWriter("test_patients.json")) {
-            writer.write(gson.toJson(patientSnps));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return patientSnps;
     }

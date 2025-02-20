@@ -2,6 +2,10 @@ package org.example;
 
 import org.example.concepts.*;
 import org.example.concepts.Module;
+import org.example.concepts.attributes.Drug;
+import org.example.concepts.attributes.DrugEvent;
+import org.example.concepts.attributes.Patient;
+import org.example.concepts.attributes.Snp;
 import org.example.modules.baseModules.ModuleBaseAttributes;
 import org.example.modules.extensionModules.Epilepsy.ModuleEpilepsy;
 import org.example.modules.extensionModules.Epilepsy.ModuleAttributes;
