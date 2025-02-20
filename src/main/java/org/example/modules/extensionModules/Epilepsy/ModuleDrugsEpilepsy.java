@@ -144,7 +144,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         List<Snp> relevantSnps = drugSnpMap.getOrDefault(drug, Collections.emptyList());
         Set<String> relevantSnpIds = relevantSnps.stream().map(Snp::getRsId).collect(Collectors.toSet());
 
-        double mutationRate = getMutationPercentage(patient, relevantSnps, relevantSnpIds);
+        double mutationRate = getMutationScore(patient, relevantSnps, relevantSnpIds);
         double variability = (new Random().nextDouble() - 0.5) * 0.2;
         double adjustedRate = Math.max(0, Math.min(1, mutationRate + variability));
 
@@ -183,16 +183,23 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
     }
 
 
-    private double getMutationPercentage(Patient patient, List<Snp> relevantSnps, Set<String> relevantSnpIds) {
-        long mutatedCount = patient.getSnps().entrySet().stream()
-                .filter(entry -> relevantSnpIds.contains(entry.getKey()))
-                .filter(entry -> {
+    private double getMutationScore(Patient patient, List<Snp> relevantSnps, Set<String> relevantSnpIds) {
+        // Compute total mutation score
+        double mutationScore = patient.getSnps().entrySet().stream()
+                .filter(entry -> relevantSnpIds.contains(entry.getKey())) // Only consider relevant SNPs
+                .mapToDouble(entry -> {
                     String expression = entry.getValue().getExpression();
-                    return expression.equals("0/1") || expression.equals("1/1");
+                    if (expression.equals("0/1")) return 1.0; // Heterozygous mutation → 1 point
+                    if (expression.equals("1/1")) return 2.0; // Homozygous mutation → 2 points
+                    return 0.0; // No mutation → 0 points
                 })
-                .count();
+                .sum(); // Sum all mutation scores
 
-        return (double) mutatedCount / relevantSnps.size();
+        // Compute the maximum possible mutation score for normalization
+        double maxPossibleScore = relevantSnps.size() * 2.0; // Each SNP can have max 2 points
+
+        // Normalize score between 0 and 1
+        return maxPossibleScore > 0 ? mutationScore / maxPossibleScore : 0.0;
     }
 
     private void ExportDrugSnpMap(Map<Drug, List<Snp>> drugSnpMap, String filename) {
