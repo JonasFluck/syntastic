@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder;
 import org.example.concepts.attributes.Snp;
 
 public class SnpLoader {
-    public static void loadSnps(String csvFilePath) {
+    public static Map<String, Map<String, Snp>> loadSnps(String csvFilePath) {
         Map<String, Map<String, Snp>> patientSnps = new HashMap<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
@@ -65,5 +65,6 @@ public class SnpLoader {
             e.printStackTrace();
             System.err.println("Error reading CSV file: " + csvFilePath);
         }
+        return patientSnps;
     }
 }
