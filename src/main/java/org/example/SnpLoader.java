@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.*;
 
@@ -7,15 +10,21 @@ import org.example.concepts.attributes.Snp;
 
 public class SnpLoader {
 
-    // Database connection settings
-    private static final String DB_URL = "jdbc:mysql://ibmidb.cs.uni-tuebingen.de:3306/syntastic";
-    private static final String DB_USER = "braiting";
-    private static final String DB_PASSWORD = "tarElIf4";
+    private static final String DB_URL;
+    private static final String DB_USER;
+    private static final String DB_PASSWORD;
+
+    static {
+        Properties props = loadDbProperties();
+        DB_URL = props.getProperty("db.url");
+        DB_USER = props.getProperty("db.user");
+        DB_PASSWORD = props.getProperty("db.password");
+    }
 
     public static Map<String, Map<String, Snp>> loadSnps() {
         Map<String, Map<String, Snp>> patientSnps = new HashMap<>();
 
-      String query =
+        String query =
                 "SELECT g.patient_id, g.snp_id, s.chromosome, s.position, " +
                         "s.reference, s.alternative, g.genotype " +
                         "FROM genotype g " +
@@ -33,9 +42,8 @@ public class SnpLoader {
                 int position = Integer.parseInt(rs.getString("position"));
                 char reference = rs.getString("reference").charAt(0);
                 char alternative = rs.getString("alternative").charAt(0);
-                String genotype = rs.getString("genotype"); // this is the expression in your original
+                String genotype = rs.getString("genotype");
 
-                // Create SNP object
                 Snp snp = new Snp();
                 snp.setRsId(snpId);
                 snp.setChromosome(chromosome);
@@ -44,7 +52,6 @@ public class SnpLoader {
                 snp.setAlt(alternative);
                 snp.setExpression(genotype);
 
-                // Add to patient-specific SNP map
                 patientSnps.computeIfAbsent(patientId, k -> new HashMap<>()).put(snpId, snp);
             }
         } catch (SQLException e) {
@@ -53,5 +60,16 @@ public class SnpLoader {
         }
 
         return patientSnps;
+    }
+
+    private static Properties loadDbProperties() {
+        Properties props = new Properties();
+        try (InputStream input = new FileInputStream("config/db.properties")) {
+            props.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Failed to load DB config.");
+        }
+        return props;
     }
 }
