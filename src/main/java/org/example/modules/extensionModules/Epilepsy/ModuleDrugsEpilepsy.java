@@ -38,7 +38,7 @@ public class ModuleDrugsEpilepsy extends ModuleDrugs {
         // Initialize drugsInFrequency with validated data
         this.drugSnpMap = createDrugSnpMap(snps, snpsPerDrugType, percentageOfSnpsForDrugPerDrugType);
         this.drugsInFrequency = initializeDrugsInFrequency(drugSnpMap);
-        ExportDrugSnpMap(drugSnpMap,"drugSnpMap_Epilepsy.json");
+        ExportDrugSnpMap(drugSnpMap,"/app/data/output/drugSnpMap_Epilepsy.json");
     }
 
     private List<Drug> initializeDrugsInFrequency(Map<Drug, List<Snp>> drugSnpMap) {

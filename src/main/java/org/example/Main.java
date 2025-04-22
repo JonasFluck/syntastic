@@ -16,6 +16,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Application started...");
         long startTime = System.currentTimeMillis();
         Parameters parameters = new Parameters(args);
         ModuleFactory moduleFactory = new ModuleFactory(parameters);
@@ -24,8 +25,8 @@ public class Main {
         List<Patient> patients = patientFactory.generatePatients(parameters.patientData);
 
         // export the results in two separated CSV files
-        exportPatientsSnpsToCsv(patients, "patients.csv");
-        exportPatientsDrugEventsToCsv(patients, "patients_drug_events.csv");
+        exportPatientsSnpsToCsv(patients, "/app/data/output/patients.csv");
+        exportPatientsDrugEventsToCsv(patients, "/app/data/output/patients_drug_events.csv");
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
     }
