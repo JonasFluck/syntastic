@@ -48,17 +48,10 @@ public class PatientFactory {
     }
 
     private synchronized void printProgress(Map<String, Integer> progressMap, int totalModules) {
-        StringBuilder output = new StringBuilder();
         for (Map.Entry<String, Integer> entry : progressMap.entrySet()) {
             String patientId = entry.getKey();
             int currentModule = entry.getValue();
-            output.append(String.format("Patient %s Module (%d of %d)\n", patientId, currentModule, totalModules));
+            System.out.println(String.format("Patient %s is at module (%d of %d)", patientId, currentModule, totalModules));
         }
-
-        // Move cursor up to overwrite previous lines
-        System.out.print("\033[H\033[2J"); // Clear the console (for most terminals)
-        System.out.flush();
-        System.out.print(output);
     }
-
 }

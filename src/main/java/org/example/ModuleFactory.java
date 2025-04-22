@@ -55,7 +55,7 @@ public class ModuleFactory {
                 modules.add(moduleEpilepsyBuilder.build());
             }
             if(moduleClass == ModuleAttributes.class){
-                modules.add(new ModuleAttributes.Builder().setOddsRatios(ModuleAttributes.loadAttributes("src/main/resources/config/epilepsy_odds_ratios.json")).build());
+                modules.add(new ModuleAttributes.Builder().setOddsRatios(ModuleAttributes.loadAttributes("config/epilepsy_odds_ratios.json")).build());
             }
         }
         return modules;

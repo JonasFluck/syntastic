@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Parameters {
-    public Map<String, Map<String, Snp>> patientData = SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
+    public Map<String, Map<String, Snp>> patientData;
 
     public Integer minAge;
     public Integer maxAge;
@@ -29,14 +29,14 @@ public class Parameters {
     private final Map<String, Consumer<String>> argumentHandlers = new HashMap<>();
 
     public Parameters(String[] args) {
-        patientData = pathToPatientData != null ? SnpLoader.loadSnps(pathToPatientData) : SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
         registerHandlers();
         parseArguments(args);
+        patientData = pathToPatientData != null ? SnpLoader.loadSnps(pathToPatientData) : SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
         writeOutParameters();
     }
 
     private void registerHandlers() {
-        argumentHandlers.put("pathToPatientData", val -> pathToPatientData = val);
+        argumentHandlers.put("data_input_file", val -> pathToPatientData = val);
         argumentHandlers.put("minAge", val -> minAge = Integer.parseInt(val));
         argumentHandlers.put("maxAge", val -> maxAge = Integer.parseInt(val));
         argumentHandlers.put("maxDrugs", val -> maxDrugs = Integer.parseInt(val));
@@ -65,7 +65,7 @@ public class Parameters {
     }
 
     public void writeOutParameters() {
-        try (FileWriter writer = new FileWriter("parameters.txt")) {
+        try (FileWriter writer = new FileWriter("/app/data/output/parameters.txt")) {
             writer.write("Parameters Configuration\n");
             writer.write("=======================\n");
             writer.write("pathToPatientData: " + (pathToPatientData != null ? pathToPatientData : "Not Set") + "\n");

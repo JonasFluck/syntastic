@@ -5,8 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.example.concepts.Module;
 import org.example.concepts.attributes.Patient;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,22 +22,25 @@ public class ModuleAttributes extends Module {
     }
 
     // Method to load JSON data into a Map
-    public static Map<String, Map<String, Double>> loadAttributes(String filePath) {
+    public static Map<String, Map<String, Double>> loadAttributes(String resourcePath) {
         Map<String, Map<String, Double>> oddsRatios = null;
-        try {
-            Gson gson = new Gson();
-            FileReader reader = new FileReader(filePath);
+        try (InputStream inputStream = ModuleAttributes.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                throw new FileNotFoundException("Resource not found: " + resourcePath);
+            }
 
+            Gson gson = new Gson();
+            InputStreamReader reader = new InputStreamReader(inputStream);
             Type type = new TypeToken<Map<String, Map<String, Double>>>() {}.getType();
             oddsRatios = gson.fromJson(reader, type);
 
-            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return oddsRatios;
     }
+
 
     // Assign random attributes to the patient based on the odds ratios
     public void assignRandomAttributes(Patient patient) {
