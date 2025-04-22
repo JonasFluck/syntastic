@@ -40,3 +40,6 @@ build/
 
 # Exclude shelved changes
 .idea/shelf/
+
+#DB settings
+/config/db.properties
