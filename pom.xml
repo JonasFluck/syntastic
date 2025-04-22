@@ -31,7 +31,7 @@
     </dependencies>
 
     <build>
-        <finalName>syntastic-1.0-SNAPSHOT</finalName>
+        <finalName>app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
