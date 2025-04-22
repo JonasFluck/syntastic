@@ -5,8 +5,8 @@ import subprocess
 # Ensure output directory exists
 os.makedirs("/app/data/output", exist_ok=True)
 
-# Base Java command to run the JAR file
-java_command = ["java", "-jar", "/app/app.jar"]
+# Base Java command to run the JAR file with additional JVM options
+java_command = ["java", "-XX:+UseG1GC", "-XX:+PrintGCDetails", "-jar", "/app/app.jar"]
 
 # Print the final command for debugging purposes
 print("Running command:", " ".join(java_command))
