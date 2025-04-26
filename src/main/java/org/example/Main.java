@@ -25,8 +25,10 @@ public class Main {
         List<Patient> patients = patientFactory.generatePatients(parameters.patientData);
 
         // export the results in two separated CSV files
-        exportPatientsSnpsToCsv(patients, "/app/data/output/patients.csv");
-        exportPatientsDrugEventsToCsv(patients, "/app/data/output/patients_drug_events.csv");
+        //exportPatientsSnpsToCsv(patients, "/app/data/output/patients.csv");
+        //exportPatientsDrugEventsToCsv(patients, "/app/data/output/patients_drug_events.csv");
+        ExportPatientsDAO dao = new ExportPatientsDAO(parameters.url, parameters.user, parameters.password);
+        dao.Export(patients);
         long endTime = System.currentTimeMillis();
         System.out.println("Execution time: " + (endTime - startTime) + " milliseconds");
     }

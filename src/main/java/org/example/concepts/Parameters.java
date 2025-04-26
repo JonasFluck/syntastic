@@ -15,7 +15,6 @@ public class Parameters {
     public Integer maxAge;
     public List<Gender> gender = new ArrayList<>();
     public List<String> countryList = new ArrayList<>();
-    public String pathToPatientData;
 
     public Integer maxDrugs;
     public Integer snpsPerDrugType;
@@ -26,17 +25,23 @@ public class Parameters {
     public Double positiveResponseAnotherDrug;
     public Double negativeResponseAnotherDrug;
 
+    public String url;
+    public String user;
+    public String password;
+
     private final Map<String, Consumer<String>> argumentHandlers = new HashMap<>();
 
     public Parameters(String[] args) {
         registerHandlers();
         parseArguments(args);
-        patientData = pathToPatientData != null ? SnpLoader.loadSnps(pathToPatientData) : SnpLoader.loadSnps("./src/main/resources/all_patients.csv");
+        patientData = SnpLoader.loadSnps(url, user, password);
         writeOutParameters();
     }
 
     private void registerHandlers() {
-        argumentHandlers.put("data_input_file", val -> pathToPatientData = val);
+        argumentHandlers.put("db_Path", val -> url = val);
+        argumentHandlers.put("db_User", val ->user = val);
+        argumentHandlers.put("db_Password", val -> password = val);
         argumentHandlers.put("minAge", val -> minAge = Integer.parseInt(val));
         argumentHandlers.put("maxAge", val -> maxAge = Integer.parseInt(val));
         argumentHandlers.put("maxDrugs", val -> maxDrugs = Integer.parseInt(val));
@@ -68,7 +73,6 @@ public class Parameters {
         try (FileWriter writer = new FileWriter("/app/data/output/parameters.txt")) {
             writer.write("Parameters Configuration\n");
             writer.write("=======================\n");
-            writer.write("pathToPatientData: " + (pathToPatientData != null ? pathToPatientData : "Not Set") + "\n");
             writer.write("minAge: " + (minAge != null ? minAge : "Not Set") + "\n");
             writer.write("maxAge: " + (maxAge != null ? maxAge : "Not Set") + "\n");
             writer.write("Gender: " + (gender.isEmpty() ? "Not set": gender.toString()) + "\n");

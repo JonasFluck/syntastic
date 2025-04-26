@@ -4,11 +4,10 @@ import json
 import subprocess
 
 # Define input paths (Users only modify external data folder)
-data_input_file = "/app/data/input.csv"
 config_file = "/app/data/config.json"
 
 # Ensure required input files exist
-for file in [data_input_file, config_file]:
+for file in [config_file]:
     if not os.path.exists(file):
         print(f"Error: {file} not found!")
         sys.exit(1)
@@ -25,8 +24,8 @@ except json.JSONDecodeError:
     sys.exit(1)
 
 # Base Java command
-java_command = ["java", "-jar", "/app/app.jar", "--data_input_file=/app/data/input.csv"]
-
+java_command = ["java", "-jar", "/app/app.jar"]
+print("Wir sind hier.")
 # Append parameters from JSON
 for key, value in config.items():
     # Ensure the key is in the format --key=value
